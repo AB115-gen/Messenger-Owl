@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>By Owl Post</title>
+<meta name="description" content="A letter has arrived for you, by owl. Break the seal.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="By Owl Post">
+<meta property="og:description" content="A letter has arrived for you. Break the seal.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#141a2e">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🦉</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#141a2e; --night-2:#1f2942; --night-3:#33406a;
+  --parch:#f4e8cf; --parch-2:#e8d8b6; --parch-edge:#c6ae85;
+  --ink:#2a2013; --ink-soft:#56462f; --rule:#c9b48c;
+}
+:root{
+  --gold:#c9a04a; --gold-hi:#eccb86; --gold-deep:#8a6a29;
+  --wax:#8e2f2f; --wax-hi:#bf5555;
+  --moon:#f6efd8; --star:#fff6d8;
+  --green:#4f7a48; --green-deep:#2f4f2c; --green-hi:#8fbf7c;
+  --peony:#e59ab4; --peony-deep:#c26a8c; --peony-hi:#f7d3de;
+  --house:#585864; --house-2:#a9a9b3; --house-text:#3a3a44;   /* unsorted: plain robes until the Hat decides */
+  --shadow:0 30px 60px -32px rgba(0,0,0,.75);
+  --ease-out:cubic-bezier(.22,1,.36,1); --ease-spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{margin:0}
+body{
+  min-height:100vh; background:var(--night);
+  background-image:
+    radial-gradient(ellipse 80% 55% at 50% 0%, var(--night-3) 0%, transparent 62%),
+    linear-gradient(180deg, var(--night-2) 0%, var(--night) 55%, #0d1120 100%);
+  background-attachment:fixed;
+  color:var(--parch);
+  font-family:'Lora',Georgia,'Times New Roman',serif; font-size:18px; line-height:1.68; text-rendering:optimizeLegibility;
+  padding:env(safe-area-inset-top,0px) 16px calc(90px + env(safe-area-inset-bottom,0px));
+  overflow-x:hidden;
+}
+h1,h2,h3,.cinzel{ font-family:'Cinzel',Georgia,serif; font-weight:600; letter-spacing:.04em }
+button{ font-family:inherit; color:inherit }
+.wrap{ width:100%; max-width:640px; margin:0 auto }
+
+/* ---------- chambers ---------- */
+.chamber{ margin:0 auto 34px; opacity:0; transform:translateY(26px); transition:opacity 1s var(--ease-out), transform 1s var(--ease-out) }
+.chamber[hidden]{ display:none }
+.chamber.in{ opacity:1; transform:none }
+/* each card's contents drift in one after another */
+.card > :not(.relic):not(.sparkles){ opacity:0; transform:translateY(12px); transition:opacity .75s var(--ease-out), transform .75s var(--ease-out) }
+.chamber.in .card > :not(.relic):not(.sparkles){ opacity:1; transform:none }
+.chamber.in .card > :nth-child(1){ transition-delay:0.06s }
+.chamber.in .card > :nth-child(2){ transition-delay:0.13s }
+.chamber.in .card > :nth-child(3){ transition-delay:0.20s }
+.chamber.in .card > :nth-child(4){ transition-delay:0.27s }
+.chamber.in .card > :nth-child(5){ transition-delay:0.34s }
+.chamber.in .card > :nth-child(6){ transition-delay:0.41s }
+.chamber.in .card > :nth-child(7){ transition-delay:0.48s }
+.chamber.in .card > :nth-child(8){ transition-delay:0.55s }
+.chamber.in .card > :nth-child(9){ transition-delay:0.62s }
+.chamber.in .card > :nth-child(10){ transition-delay:0.69s }
+.chamber.in .card > :nth-child(11){ transition-delay:0.76s }
+.chamber.in .card > :nth-child(12){ transition-delay:0.83s }
+.chamber.in .card > :nth-child(13){ transition-delay:0.90s }
+.chamber.in .card > :nth-child(14){ transition-delay:0.97s }
+.pop-in{ animation:popIn .8s var(--ease-out) backwards }
+@keyframes popIn{ from{ opacity:0; transform:translateY(14px) scale(.98) } to{ opacity:1; transform:none } }
+.card{
+  position:relative; background:linear-gradient(160deg, var(--parch) 0%, var(--parch-2) 100%);
+  color:var(--ink); padding:34px 28px 32px; box-shadow:var(--shadow);
+  border:1px solid var(--parch-edge); border-radius:3px;
+}
+.card::after{
+  content:''; position:absolute; inset:8px; border:1px solid rgba(140,110,60,.3); pointer-events:none; border-radius:2px;
+}
+.card h2{ font-size:25px; margin:0 0 4px; color:var(--ink) }
+.card .sub{ font-family:'Cinzel',Georgia,serif; font-weight:600; text-transform:uppercase; letter-spacing:.15em; font-size:12.5px; line-height:1.55; color:var(--ink-soft); margin:0 0 16px }
+.card p{ margin:0 0 14px }
+.lead{ font-style:italic; color:var(--ink-soft) }
+.sign{ text-align:right; font-style:italic; color:var(--ink-soft); margin:18px 0 0 }
+.sign b{ display:block; font-style:normal; font-weight:600; color:var(--ink) }
+.center{ text-align:center }
+
+.btn{
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold)); color:#2a1f08; border:0;
+  padding:12px 28px; border-radius:999px; font-size:17px; font-weight:500; letter-spacing:.01em; cursor:pointer;
+  box-shadow:0 6px 14px -6px rgba(0,0,0,.5);
+  transition:transform .35s var(--ease-spring), box-shadow .35s var(--ease-out), filter .35s, opacity .35s;
+}
+.btn:hover{ transform:translateY(-2px); box-shadow:0 12px 22px -10px rgba(0,0,0,.6); filter:brightness(1.05) }
+.btn:active{ transform:translateY(0) scale(.96); transition-duration:.12s }
+.btn[disabled]{ opacity:.45; cursor:default; transform:none; filter:none }
+.btn.ghost{ background:none; border:1px solid var(--parch-edge); color:var(--ink); box-shadow:none }
+.btn:focus-visible,.opt:focus-visible,.jar:focus-visible,.mcard:focus-visible,.relic:focus-visible,input:focus-visible{ outline:2px solid var(--gold); outline-offset:3px }
+input[type=text]{
+  width:100%; max-width:380px; background:rgba(255,255,255,.4); border:0; border-bottom:1px solid var(--rule);
+  color:var(--ink); font-family:inherit; font-size:19px; text-align:center; padding:9px 8px; outline:none; letter-spacing:.08em;
+}
+input[type=text]::placeholder{ color:var(--ink-soft); opacity:.65 }
+.msg{ min-height:1.4em; font-style:italic; color:var(--ink-soft); margin:10px 0 0 }
+.msg.bad{ color:var(--wax) }
+.msg.good{ color:var(--green-deep) }
+.msg.flash{ animation:msgIn .5s var(--ease-out) }
+@keyframes msgIn{ from{ opacity:0; transform:translateY(6px) } to{ opacity:1; transform:none } }
+
+/* ---------- arrival ---------- */
+.sky{ position:relative; width:100%; max-width:640px; margin:0 auto }
+.sky svg{
+  width:100%; height:auto; display:block;
+  -webkit-mask-image:linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 14%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 14%);
+  mask-composite:intersect;
+}
+.twinkle{ animation:tw 3.4s ease-in-out infinite }
+@keyframes tw{ 0%,100%{ opacity:.25 } 50%{ opacity:1 } }
+#arrival{ display:flex; flex-direction:column; justify-content:center; min-height:calc(100vh - 34px); min-height:calc(100svh - 34px - env(safe-area-inset-top,0px)) }
+.owl{ transform-box:fill-box; transform-origin:50% 50%; animation:fly 4.6s cubic-bezier(.3,.5,.4,1) forwards }
+.owl.landed{ animation:none; opacity:1 }
+@keyframes fly{
+  0%{ transform:translate(-340px,-90px) scale(.42); opacity:0 }
+  10%{ opacity:1 }
+  60%{ transform:translate(-120px,40px) scale(.72); opacity:1 }
+  100%{ transform:translate(0,0) scale(1); opacity:1 }
+}
+.wing{ transform-box:fill-box; transform-origin:100% 50%; animation:flap .42s ease-in-out infinite alternate }
+.wing.r{ transform-origin:0% 50% }
+@keyframes flap{ from{ transform:rotate(-16deg) } to{ transform:rotate(22deg) } }
+.owl.perched .wing{ animation:none; transform:rotate(0) }
+.envelope{ cursor:pointer; transform-box:fill-box; transform-origin:center; transition:transform .25s }
+.envelope:hover{ transform:scale(1.06) }
+.owl.opened .envelope{ animation:envPop .8s var(--ease-spring) }
+@keyframes envPop{ 0%{ transform:scale(1) } 35%{ transform:scale(1.16) rotate(-3deg) } 100%{ transform:scale(1) } }
+.ring{ transform-box:fill-box; transform-origin:center; opacity:0 }
+.owl.perched .ring{ animation:ringPulse 2.3s ease-out infinite }
+.owl.opened .ring{ animation:none; opacity:0 }
+.owl.opened .seal{ animation:sealBreak .7s var(--ease-out) forwards }
+@keyframes sealBreak{ 0%{ transform:scale(1); opacity:1 } 35%{ transform:scale(1.55); opacity:1 } 100%{ transform:scale(.15); opacity:0 } }
+@keyframes ringPulse{ 0%{ transform:scale(.62); opacity:.8 } 100%{ transform:scale(1.5); opacity:0 } }
+.seal{ transform-box:fill-box; transform-origin:center; animation:pulse 1.6s ease-in-out infinite }
+@keyframes pulse{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.16) } }
+.tagline{ text-align:center; font-style:italic; font-size:19px; color:rgba(244,232,207,.92); margin:6px 0 26px; min-height:1.5em; transition:opacity .45s var(--ease-out), transform .45s var(--ease-out) }
+.tagline.fade{ opacity:0; transform:translateY(5px) }
+
+/* ---------- sorting ---------- */
+.opts{ display:grid; gap:10px; margin:14px 0 0 }
+.opt{
+  text-align:left; background:rgba(255,255,255,.35); border:1px solid var(--parch-edge); border-radius:3px;
+  padding:12px 16px; font-size:17px; line-height:1.45; cursor:pointer; color:var(--ink);
+  transition:background .25s, transform .3s var(--ease-spring), opacity .3s, border-color .25s;
+  animation:optIn .55s var(--ease-out) backwards;
+}
+.opt:hover{ background:rgba(255,255,255,.7); transform:translateX(4px) }
+@keyframes optIn{ from{ opacity:0; transform:translateY(10px) } to{ opacity:1; transform:none } }
+.opt.chosen{ background:var(--gold-hi); border-color:var(--gold); transform:scale(1.02) }
+.opts.choosing .opt:not(.chosen){ opacity:.3 }
+.qnum{ font-family:'Cinzel',Georgia,serif; font-weight:600; text-transform:uppercase; letter-spacing:.14em; font-size:12px; color:var(--ink-soft) }
+.crest{ width:132px; height:auto; display:block; margin:6px auto 10px }
+.housename{ font-family:'Cinzel',serif; font-size:27px; text-align:center; margin:0 0 6px; color:var(--house-text) }
+.riddle.swap{ animation:qIn .5s var(--ease-out) }
+@keyframes qIn{ from{ opacity:0; transform:translateX(14px) } to{ opacity:1; transform:none } }
+.mascot.thinking svg{ transform-origin:50% 92%; animation:wobble 1s ease-in-out infinite }
+@keyframes wobble{ 0%,100%{ transform:rotate(0) } 25%{ transform:rotate(-4deg) } 75%{ transform:rotate(4deg) } }
+#sortResult.pop-in .crest{ animation:crestIn 1s var(--ease-spring) both .1s }
+@keyframes crestIn{ from{ opacity:0; transform:scale(.4) rotate(-14deg) } to{ opacity:1; transform:none } }
+
+/* ---------- potions ---------- */
+.shelf{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:18px 0 8px }
+.jar{ background:none; border:0; cursor:pointer; padding:6px 2px; border-radius:6px; transition:transform .3s var(--ease-spring), background .25s, opacity .5s }
+.jar:hover{ transform:translateY(-4px); background:rgba(255,255,255,.35) }
+.jar svg{ width:100%; height:auto; display:block; max-width:78px; margin:0 auto }
+.jar span{ display:block; font-size:14px; line-height:1.3; margin-top:6px; color:var(--ink-soft) }
+.jar.done{ opacity:.35; pointer-events:none }
+.jar.wrong{ animation:shake .4s }
+@keyframes shake{ 25%{ transform:translateX(-7px) } 75%{ transform:translateX(7px) } }
+.riddle{ font-style:italic; font-size:19.5px; line-height:1.55; text-align:center; margin:6px auto 4px; max-width:30em }
+.cauldron{ width:170px; height:auto; display:block; margin:0 auto }
+.brew{ transform-box:fill-box; transform-origin:50% 100%; animation:bubble 2.4s ease-in-out infinite }
+@keyframes bubble{ 0%,100%{ transform:scaleY(1) } 50%{ transform:scaleY(1.07) } }
+.pips{ text-align:center; letter-spacing:.5em; color:var(--gold-deep); font-size:20px; margin:4px 0 0 }
+.pips.bump, #trackCount.bump{ animation:bump .55s var(--ease-spring) }
+@keyframes bump{ 0%{ transform:scale(1) } 40%{ transform:scale(1.28) } 100%{ transform:scale(1) } }
+#trackCount{ display:inline-block }
+#brewTop{ transition:fill 1s ease }
+.cauldron.splash{ animation:splash .6s var(--ease-spring) }
+@keyframes splash{ 0%{ transform:scale(1) } 35%{ transform:scale(1.07,.95) } 100%{ transform:scale(1) } }
+
+/* ---------- gifts ---------- */
+.gift{ background:linear-gradient(165deg,#241c33,#141024); color:var(--parch); border:1px solid var(--gold-deep) }
+.gift::after{ border-color:rgba(201,160,74,.45) }
+.gift h2, .gift .sub{ color:var(--gold-hi) }
+.gift .sub{ color:rgba(244,232,207,.74) }
+.gift .lead{ color:rgba(244,232,207,.86) }
+.gift .btn.ghost{ color:var(--parch); border-color:var(--gold-deep) }
+.bottle,.flower{ width:200px; height:auto; display:block; margin:6px auto 12px; animation:appear 1.4s var(--ease-out) }
+.bottle{ animation:appear 1.4s var(--ease-out), floaty 5s ease-in-out 1.5s infinite }
+@keyframes floaty{ 0%,100%{ transform:translateY(0) rotate(0) } 50%{ transform:translateY(-7px) rotate(1.3deg) } }
+@keyframes appear{ from{ opacity:0; transform:scale(.7) translateY(20px) } to{ opacity:1; transform:none } }
+.giftname{ font-family:'Cinzel',serif; font-size:22px; text-align:center; color:var(--gold-hi); margin:0 0 2px }
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .giftname{ background:linear-gradient(100deg,var(--gold-hi) 0%,var(--gold-hi) 42%,#fff7df 50%,var(--gold-hi) 58%,var(--gold-hi) 100%);
+    background-size:260% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:sheen 5.5s ease-in-out infinite }
+}
+@keyframes sheen{ 0%{ background-position:100% 0 } 55%,100%{ background-position:0% 0 } }
+.giftsub{ text-align:center; font-style:italic; color:rgba(244,232,207,.82); margin:0 0 16px }
+.sparkles{ position:absolute; inset:0; overflow:hidden; pointer-events:none }
+.spark{ position:absolute; width:4px; height:4px; background:var(--gold-hi); border-radius:50%; animation:float-up 3s ease-out forwards }
+@keyframes float-up{ 0%{ transform:translateY(0) scale(0); opacity:0 } 20%{ opacity:1; transform:scale(1) } 100%{ transform:translateY(-180px) scale(.2); opacity:0 } }
+
+/* ---------- runes ---------- */
+.runekey{ display:grid; grid-template-columns:repeat(6,1fr); gap:12px 6px; margin:16px 0; background:rgba(255,255,255,.28); padding:14px 10px; border:1px solid var(--parch-edge) }
+.runekey .k{ text-align:center; color:var(--ink) }
+.runekey .k svg{ width:15px; height:24px; display:block; margin:0 auto 4px }
+.runekey .k i{ font-style:normal; font-family:'Cinzel',Georgia,serif; font-weight:600; font-size:13px; color:var(--ink-soft); letter-spacing:.06em }
+.cipher{ text-align:center; margin:14px 0 12px; line-height:1 }
+.rw{ display:inline-block; white-space:nowrap; margin:7px 10px }
+.rc{ display:inline-block; width:20px; height:32px; color:var(--ink); transition:color .35s var(--ease-out), transform .45s var(--ease-spring), filter .35s }
+.rc svg{ width:100%; height:100%; display:block }
+.rc.ok{ color:#a07a22; transform:translateY(-3px); filter:drop-shadow(0 0 3px rgba(201,160,74,.5)) }
+.cipher.solved .rc{ animation:runeWave .75s var(--ease-out) both }
+@keyframes runeWave{ 0%{ transform:translateY(-3px) } 40%{ transform:translateY(-12px) scale(1.18) } 100%{ transform:translateY(-3px) } }
+.rc.no{ color:var(--wax) }
+.rcount{ font-family:'Cinzel',Georgia,serif; font-weight:600; text-transform:uppercase; font-size:12px; letter-spacing:.14em; color:var(--ink-soft); margin:10px 0 0 }
+
+/* ---------- memory ---------- */
+.grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin:16px 0 8px }
+.mcard{ position:relative; aspect-ratio:3/4; border:0; padding:0; background:none; cursor:pointer; perspective:600px;
+  transition:opacity .6s ease .55s; animation:deal .6s var(--ease-spring) backwards }
+@keyframes deal{ from{ opacity:0; transform:translateY(18px) scale(.8) } to{ opacity:1; transform:none } }
+.grid .mcard:nth-child(1){ animation-delay:0ms }
+.grid .mcard:nth-child(2){ animation-delay:40ms }
+.grid .mcard:nth-child(3){ animation-delay:80ms }
+.grid .mcard:nth-child(4){ animation-delay:120ms }
+.grid .mcard:nth-child(5){ animation-delay:160ms }
+.grid .mcard:nth-child(6){ animation-delay:200ms }
+.grid .mcard:nth-child(7){ animation-delay:240ms }
+.grid .mcard:nth-child(8){ animation-delay:280ms }
+.grid .mcard:nth-child(9){ animation-delay:320ms }
+.grid .mcard:nth-child(10){ animation-delay:360ms }
+.grid .mcard:nth-child(11){ animation-delay:400ms }
+.grid .mcard:nth-child(12){ animation-delay:440ms }
+.mface{
+  position:absolute; inset:0; border-radius:4px; display:grid; place-items:center;
+  transition:transform .6s cubic-bezier(.4,1.3,.55,1); backface-visibility:hidden; -webkit-backface-visibility:hidden; transform-style:preserve-3d;
+}
+.mback{ background:linear-gradient(150deg,#2c2447,#1a1530); border:1px solid var(--gold-deep) }
+.mback svg{ width:52%; opacity:.5 }
+.mfront{ background:var(--parch); border:1px solid var(--parch-edge); transform:rotateY(180deg) }
+.mfront svg{ width:58% }
+.mcard.flip .mback{ transform:rotateY(-180deg) }
+.mcard.flip .mfront{ transform:rotateY(0) }
+.mcard.matched{ opacity:.5; pointer-events:none }
+.mcard.matched .mfront{ animation:matchGlow .8s var(--ease-out) }
+@keyframes matchGlow{ 0%{ transform:rotateY(0) scale(1); box-shadow:0 0 0 0 rgba(236,203,134,0) } 35%{ transform:rotateY(0) scale(1.1); box-shadow:0 0 0 3px rgba(236,203,134,.95), 0 0 18px 4px rgba(236,203,134,.6) } 100%{ transform:rotateY(0) scale(1); box-shadow:0 0 0 0 rgba(236,203,134,0) } }
+
+/* ---------- hunt ---------- */
+.relic{
+  position:absolute; width:36px; height:36px; padding:5px; border:0; background:none; cursor:pointer;
+  visibility:hidden; opacity:0; transition:opacity .5s, transform .3s var(--ease-spring); z-index:4; -webkit-tap-highlight-color:transparent;
+}
+.relic svg{ width:100%; height:100%; display:block }
+.card:not(.gift) .relic{ --gold-hi:#b9852a; --gold:#8f6a24; --gold-deep:#5e4718 }   /* darker gold so they show on parchment */
+body.hunting .relic{ visibility:visible; animation:shimmer 2.8s ease-in-out infinite }
+@keyframes shimmer{ 0%,100%{ opacity:.3; filter:drop-shadow(0 0 0 rgba(236,203,134,0)) } 50%{ opacity:.85; filter:drop-shadow(0 0 7px rgba(236,203,134,.95)) } }
+body.hunting .relic:hover{ opacity:1; transform:scale(1.3) }
+body.hunting .relic.hinted{ animation:hintGlow .9s ease-in-out 5 }
+@keyframes hintGlow{ 0%,100%{ opacity:.6; transform:scale(1) } 50%{ opacity:1; transform:scale(1.7); filter:drop-shadow(0 0 12px #eccb86) } }
+.relic.got{ display:none }
+.tracker{
+  position:fixed; left:50%; transform:translateX(-50%); bottom:calc(14px + env(safe-area-inset-bottom,0px));
+  background:rgba(20,26,46,.94); border:1px solid var(--gold-deep); color:var(--parch);
+  padding:8px 14px; border-radius:999px; font-family:'Cinzel',serif; font-size:14px; letter-spacing:.08em;
+  display:none; align-items:center; gap:12px; z-index:30; box-shadow:0 8px 24px -10px #000; white-space:nowrap;
+}
+.ticons{ display:flex; gap:5px }
+.ticon{ width:19px; height:19px; opacity:.25; filter:grayscale(1); transition:opacity .4s, filter .4s }
+.ticon.pop{ animation:ticonPop .7s var(--ease-spring) }
+@keyframes ticonPop{ 0%{ transform:scale(.5) } 45%{ transform:scale(1.75) } 100%{ transform:scale(1) } }
+.ticon svg{ width:100%; height:100%; display:block }
+.ticon.got{ opacity:1; filter:none }
+.tracker.on{ display:flex; animation:trackIn .65s var(--ease-spring) both }
+.tracker.leaving{ animation:trackOut .5s var(--ease-out) forwards }
+@keyframes trackIn{ from{ opacity:0; transform:translate(-50%,34px) } to{ opacity:1; transform:translate(-50%,0) } }
+@keyframes trackOut{ to{ opacity:0; transform:translate(-50%,34px) } }
+/* collecting a relic: a pop, a burst of sparkles, and a flight down to the tracker */
+.flyer{ position:fixed; width:36px; height:36px; padding:5px; z-index:45; pointer-events:none; will-change:transform; filter:drop-shadow(0 0 8px rgba(246,220,154,.95)) }
+.flyer svg{ width:100%; height:100%; display:block }
+.flyer.jarfly{ padding:0; filter:drop-shadow(0 4px 6px rgba(0,0,0,.25)) }
+.burst{ position:fixed; width:0; height:0; z-index:44; pointer-events:none }
+.burst i{ position:absolute; display:block }
+.burst .bring{ left:-22px; top:-22px; width:44px; height:44px; border-radius:50%; border:2px solid; opacity:0; animation:bring .65s var(--ease-out) forwards }
+@keyframes bring{ 0%{ transform:scale(.25); opacity:.95 } 100%{ transform:scale(2.3); opacity:0 } }
+.burst .bp{ left:-3.5px; top:-3.5px; width:7px; height:7px; border-radius:50%; opacity:0; box-shadow:0 0 6px rgba(255,236,180,.8); animation:bp .8s cubic-bezier(.15,.75,.3,1) forwards }
+.burst .bp.star{ left:-6px; top:-6px; width:12px; height:12px; border-radius:0; box-shadow:none; clip-path:polygon(50% 0,61% 36%,98% 36%,68% 58%,79% 94%,50% 72%,21% 94%,32% 58%,2% 36%,39% 36%) }
+@keyframes bp{ 0%{ transform:translate(0,0) scale(.4) rotate(0); opacity:1 } 60%{ opacity:1 } 100%{ transform:translate(var(--dx),var(--dy)) scale(.9) rotate(140deg); opacity:0 } }
+.drop{ position:fixed; width:7px; height:11px; margin-left:-3.5px; background:#9ccbf0; border-radius:50% 50% 50% 50% / 62% 62% 38% 38%; z-index:40; pointer-events:none; opacity:0; animation:dropFall .75s cubic-bezier(.55,0,.9,.55) forwards }
+@keyframes dropFall{ 0%{ opacity:0; transform:translateY(0) } 12%{ opacity:.95 } 88%{ opacity:.9 } 100%{ opacity:0; transform:translateY(var(--fall)) scaleY(.6) } }
+.tracker button{ background:none; border:0; border-bottom:1px solid var(--gold-deep); cursor:pointer; font-size:14px; font-family:'Lora',Georgia,serif; font-style:italic; padding:0 0 1px }
+.found-toast{
+  position:fixed; left:50%; top:calc(18px + env(safe-area-inset-top,0px)); transform:translateX(-50%);
+  background:var(--gold); color:#2a1f08; padding:9px 20px; border-radius:999px; font-style:italic; font-size:15.5px; z-index:31; box-shadow:0 10px 24px -12px rgba(0,0,0,.6);
+  width:max-content; max-width:calc(100vw - 32px); text-align:center; line-height:1.35;
+  animation:toast 2.2s var(--ease-out) forwards; pointer-events:none;
+}
+@keyframes toast{ 0%{ opacity:0; transform:translate(-50%,-14px) scale(.96) } 12%,76%{ opacity:1; transform:translate(-50%,0) scale(1) } 100%{ opacity:0; transform:translate(-50%,-10px) scale(.98) } }
+
+/* ---------- greenhouse / bloom ---------- */
+.locks{ display:grid; gap:12px; margin:16px 0 0 }
+.lock{ display:flex; align-items:center; gap:13px; padding:13px 16px; border:1px solid var(--parch-edge); background:rgba(255,255,255,.3); transition:opacity .7s var(--ease-out), background .7s }
+.lock .mark{ font-size:23px; width:26px; text-align:center; color:var(--ink-soft) }
+.lock.done .mark{ color:var(--green-deep); animation:markPop .7s var(--ease-spring) }
+@keyframes markPop{ 0%{ transform:scale(.3) rotate(-30deg); opacity:0 } 100%{ transform:none; opacity:1 } }
+.lock .mark{ display:inline-block }
+.lock.done{ opacity:.62 }
+.lock b{ font-weight:600; display:block; font-family:'Cinzel',serif; font-size:15px; letter-spacing:.03em }
+.lock small{ color:var(--ink-soft); font-size:15.5px; font-style:italic; line-height:1.45 }
+.plant{ width:100%; max-width:300px; height:auto; display:block; margin:8px auto 0 }
+.grow{ transform-box:fill-box; transform-origin:50% 100%; transition:transform 1.5s cubic-bezier(.3,1.2,.5,1), opacity 1.2s }
+.hidden-part{ opacity:0; transform:scale(0) }
+.frame-in{ animation:frameDrop 1.5s cubic-bezier(.3,1.2,.5,1) }
+@keyframes frameDrop{ from{ opacity:0; transform:translateY(-70px) scale(1.15) } to{ opacity:1; transform:none } }
+
+/* ---------- mascot ---------- */
+.mascot{ width:118px; margin:0 auto 2px; display:block }
+.mascot svg{ width:100%; height:auto; display:block; overflow:visible; animation:bob 3.6s ease-in-out infinite }
+.mascot.lg svg{ animation-duration:4.4s }
+@keyframes bob{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-7px) } }
+.sky-mascot{ position:absolute; left:8%; bottom:14%; width:20%; z-index:3; margin:0 }
+.gframe{
+  position:relative; width:100%; max-width:296px; margin:6px auto 14px; padding:15px; border-radius:5px;
+  background:linear-gradient(135deg,#f0d79a 0%,#c9a04a 32%,#8a6a29 66%,#e2c684 100%);
+  box-shadow:0 26px 44px -22px rgba(0,0,0,.85);
+}
+.gframe .inner{
+  background:radial-gradient(ellipse 70% 60% at 50% 30%, #3a2f4c 0%, #1a1426 100%);
+  border:2px solid #6a5220; padding:12px 10px 6px;
+}
+.gframe .mascot{ width:100%; max-width:200px; margin:0 auto }
+#finale.in .gframe{ transform-origin:50% -16px; animation:swing 2.4s var(--ease-out) both .35s }
+@keyframes swing{ 0%{ opacity:0; transform:translateY(-26px) rotate(-7deg) } 30%{ opacity:1; transform:rotate(4.5deg) } 55%{ transform:rotate(-2.2deg) } 78%{ transform:rotate(.9deg) } 100%{ opacity:1; transform:rotate(0) } }
+.plaque{
+  margin:12px auto -2px; width:78%; padding:5px 0; border-radius:3px; text-align:center;
+  background:linear-gradient(135deg,#f0d79a,#c9a04a 45%,#8a6a29);
+  font-family:'Cinzel',serif; font-size:13px; letter-spacing:.14em; color:#3a2c0c;
+}
+.gift b{ color:var(--gold-hi); font-weight:600 }
+
+footer{ text-align:center; font-style:italic; color:rgba(244,232,207,.66); font-size:15px; padding:12px 0 0 }
+
+@media (max-width:430px){
+  body{ font-size:17px }
+  .riddle{ font-size:18.5px }
+  .tagline{ font-size:18px }
+  .card .sub{ font-size:12px; letter-spacing:.13em }
+  .card{ padding:28px 20px 26px }
+  .runekey{ grid-template-columns:repeat(4,1fr) }
+  .rc{ width:16px; height:26px }
+  .rw{ margin:5px 7px }
+  .shelf{ grid-template-columns:repeat(3,1fr); gap:8px }
+}
+@media (prefers-reduced-motion: reduce){
+  .owl,.wing,.seal,.twinkle,.brew,.spark,.relic,.bottle,.mascot svg,.giftname,.opt,.mcard,.mfront,.tracker,.ticon,
+  .pop-in,.crest,.gframe,.msg,.riddle,.rc,.lock .mark,.envelope,.pips,#trackCount,.cauldron{ animation:none !important }
+  .chamber,.card > *{ transition:none !important }
+  .card > :not(.relic):not(.sparkles){ opacity:1; transform:none }
+  .burst,.flyer,.drop{ display:none }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<!-- ============ ARRIVAL ============ -->
+<section class="chamber in" id="arrival">
+  <div class="sky">
+    <svg viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="skyT">
+      <title id="skyT">A castle on a cliff under a starry night sky, with an owl flying in carrying a letter.</title>
+      <defs>
+        <radialGradient id="moonG" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="var(--moon)" stop-opacity=".9"/>
+          <stop offset=".45" stop-color="var(--moon)" stop-opacity=".18"/>
+          <stop offset="1" stop-color="var(--moon)" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="letterGlow" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#f6dc9a" stop-opacity=".5"/>
+          <stop offset=".55" stop-color="#f6dc9a" stop-opacity=".16"/>
+          <stop offset="1" stop-color="#f6dc9a" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="castleG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1b2340"/><stop offset="1" stop-color="#0c1020"/>
+        </linearGradient>
+      </defs>
+      <circle cx="497" cy="97" r="115" fill="url(#moonG)"/>
+      <circle cx="497" cy="97" r="42" fill="var(--moon)" opacity=".92"/>
+      <circle cx="481" cy="86" r="7" fill="#e4dcc2" opacity=".5"/>
+      <circle cx="508" cy="108" r="10" fill="#e4dcc2" opacity=".38"/>
+      <g fill="var(--star)">
+        <circle class="twinkle" cx="62" cy="52" r="1.9" style="animation-delay:-.4s"/>
+        <circle class="twinkle" cx="145" cy="97" r="1.5" style="animation-delay:-1.8s"/>
+        <circle class="twinkle" cx="228" cy="41" r="2.1" style="animation-delay:-2.7s"/>
+        <circle class="twinkle" cx="303" cy="116" r="1.4" style="animation-delay:-1.1s"/>
+        <circle class="twinkle" cx="381" cy="58" r="1.8" style="animation-delay:-3s"/>
+        <circle class="twinkle" cx="592" cy="163" r="1.7" style="animation-delay:-.9s"/>
+        <circle class="twinkle" cx="43" cy="176" r="1.5" style="animation-delay:-2.2s"/>
+        <circle class="twinkle" cx="196" cy="163" r="1.3" style="animation-delay:-1.5s"/>
+        <circle class="twinkle" cx="557" cy="44" r="1.6" style="animation-delay:-2.5s"/>
+        <circle class="twinkle" cx="113" cy="222" r="1.4" style="animation-delay:-.2s"/>
+      </g>
+      <path d="M0 430 L0 356 L64 336 L128 352 L196 322 L266 344 L340 310 L420 338 L496 316 L570 340 L640 322 L640 430 Z" fill="#0b0f1d" opacity=".9"/>
+      <g fill="url(#castleG)">
+        <path d="M232 430 V296 H264 V258 H286 V296 H320 V244 H352 V296 H392 V268 H414 V430 Z"/>
+        <path d="M240 258 L252 230 L264 258 Z"/><path d="M276 246 L286 216 L296 246 Z"/>
+        <path d="M312 232 L336 190 L360 232 Z"/><path d="M386 256 L403 226 L420 256 Z"/>
+        <path d="M172 430 V318 H208 V430 Z"/><path d="M168 320 L190 288 L212 320 Z"/>
+        <path d="M432 430 V330 H466 V430 Z"/><path d="M428 332 L449 300 L470 332 Z"/>
+      </g>
+      <g fill="#f3c96b" opacity=".85">
+        <rect x="244" y="322" width="8" height="12" rx="2"/><rect x="298" y="316" width="8" height="12" rx="2"/>
+        <rect x="330" y="266" width="8" height="12" rx="2"/><rect x="180" y="344" width="8" height="12" rx="2"/>
+        <rect x="444" y="356" width="8" height="12" rx="2"/><rect x="396" y="300" width="8" height="12" rx="2"/>
+      </g>
+      <!-- owl: the outer group places it; the inner group flies. (A CSS animation replaces an
+           element's own transform attribute, which is what used to strand it in the corner.) -->
+      <g transform="translate(300,132)">
+      <g class="owl" id="owl">
+        <path class="wing l" d="M-6 -4 C-40 -26 -66 -16 -72 4 C-52 14 -22 12 -6 6 Z" fill="#8a7358"/>
+        <path class="wing r" d="M6 -4 C40 -26 66 -16 72 4 C52 14 22 12 6 6 Z" fill="#8a7358"/>
+        <ellipse cx="0" cy="6" rx="21" ry="26" fill="#a68b6a"/>
+        <ellipse cx="0" cy="12" rx="13" ry="17" fill="#e0cdae"/>
+        <path d="M-13 16 h26 M-12 23 h24 M-9 30 h18" stroke="#a68b6a" stroke-width="2" opacity=".55"/>
+        <circle cx="0" cy="-16" r="17" fill="#a68b6a"/>
+        <path d="M-17 -24 L-11 -34 L-5 -25 Z M17 -24 L11 -34 L5 -25 Z" fill="#a68b6a"/>
+        <circle cx="-6.5" cy="-17" r="6" fill="#f6efd8"/><circle cx="6.5" cy="-17" r="6" fill="#f6efd8"/>
+        <circle cx="-6.5" cy="-17" r="3.4" fill="#22304a"/><circle cx="6.5" cy="-17" r="3.4" fill="#22304a"/>
+        <circle cx="-5.4" cy="-18.4" r="1.2" fill="#fff"/><circle cx="7.6" cy="-18.4" r="1.2" fill="#fff"/>
+        <path d="M0 -12 L-3.4 -7 L0 -4 L3.4 -7 Z" fill="#dda85c"/>
+        <path d="M-7 30 l-2 8 M-3 31 l-1 8 M5 31 l1 8 M9 30 l2 8" stroke="#dda85c" stroke-width="2.4" stroke-linecap="round"/>
+        <g class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the letter">
+          <circle cx="0" cy="62" r="62" fill="url(#letterGlow)"/>
+          <g class="ring"><circle cx="0" cy="62" r="50" fill="none" stroke="var(--gold-hi)" stroke-width="2"/></g>
+          <path d="M-9 34 L-6 40 M9 34 L6 40" stroke="#dda85c" stroke-width="3" stroke-linecap="round"/>
+          <g transform="translate(0,62) scale(1.55)">
+            <rect x="-27" y="-18" width="54" height="36" rx="2" fill="var(--parch)" stroke="var(--parch-edge)" stroke-width="1.2"/>
+            <path d="M-27 -18 L0 2 L27 -18" fill="none" stroke="var(--parch-edge)" stroke-width="1.4"/>
+            <path d="M-27 18 L-9 3 M27 18 L9 3" stroke="var(--parch-edge)" stroke-width="1" opacity=".7"/>
+            <circle class="seal" cx="0" cy="2" r="8" fill="var(--wax)"/>
+            <circle class="seal" cx="0" cy="2" r="4.4" fill="none" stroke="rgba(255,255,255,.45)"/>
+          </g>
+        </g>
+      </g>
+      </g>
+    </svg>
+    <div class="mascot sky-mascot" data-prop="none" data-face="wow"></div>
+    <button class="relic" data-relic="1" style="left:56%;top:4%" aria-label="A hidden relic">
+      <svg viewBox="0 0 24 24"><path d="M12 1 L14.6 8.6 L22.4 8.9 L16.2 13.7 L18.4 21.3 L12 16.8 L5.6 21.3 L7.8 13.7 L1.6 8.9 L9.4 8.6 Z" fill="var(--gold-hi)"/></svg>
+    </button>
+  </div>
+  <p class="tagline" id="tagline">&nbsp;</p>
+</section>
+
+<!-- ============ THE LETTER ============ -->
+<section class="chamber" id="letter" hidden>
+  <div class="card">
+    <button class="relic" data-relic="2" style="right:16px;bottom:14px" aria-label="A hidden relic">
+      <svg viewBox="0 0 24 24"><path d="M20 3 C12 5 6 11 5 19 L3 21 M7 17 C9 10 14 6 20 3 Z" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/><path d="M19 4 C13 7 9 11 7 17 C12 17 17 12 19 4 Z" fill="var(--gold-hi)"/></svg>
+    </button>
+    <div class="mascot" data-prop="letter" data-face="happy"></div>
+    <p class="sub center">Delivered by owl, at some expense</p>
+    <h2 class="center" id="salutation">Dearest friend,</h2>
+    <p style="margin-top:16px">A very happy birthday to you. The owl was told to find the loveliest witch in the castle, and it flew straight to you without once asking for directions. Twenty-five on the nineteenth of November, and — if the enchantment on this page is working properly — still the sort of person who reads a letter all the way to the end.</p>
+    <p>You should know that two gifts have been hidden for you, and neither will simply be handed over. The castle has standards. There are examinations.</p>
+    <p>Pass your Potions and the first is yours. Fair warning: it is, technically, a love potion. You have never needed one, which is precisely why it is only a gift. Pass Herbology, which is longer and more stubborn than it sounds, and the second will bloom for you.</p>
+    <p class="lead">Take your time. Nobody is marking the clock. Wear something aesthetic while you work, though I have yet to see you in anything that wasn't.</p>
+    <p class="sign" id="letterSign" hidden>with love,<b id="fromName"></b></p>
+    <p class="center" style="margin:22px 0 0"><button class="btn" id="toSorting">Report to the Great Hall</button></p>
+  </div>
+</section>
+
+<!-- ============ SORTING ============ -->
+<section class="chamber" id="sorting" hidden>
+  <div class="card">
+    <div class="sparkles" id="sp0"></div>
+    <button class="relic" data-relic="3" style="left:18px;top:16px" aria-label="A hidden relic">
+      <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="5" fill="none" stroke="var(--gold)" stroke-width="2"/><path d="M11.5 11.5 L21 21 M17 17 l-3 3 M20 20 l-2.5 2.5" stroke="var(--gold-hi)" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+    <div class="mascot" data-prop="none" data-face="think" data-hat="1"></div>
+    <p class="sub center">The Sorting</p>
+    <div id="sortBody">
+      <p class="qnum center" id="qnum">Question one of five</p>
+      <p class="riddle" id="qtext"></p>
+      <div class="opts" id="qopts"></div>
+    </div>
+    <div id="sortResult" hidden>
+      <svg class="crest" viewBox="0 0 120 140" aria-hidden="true">
+        <path d="M60 4 L112 24 V72 C112 106 88 126 60 136 C32 126 8 106 8 72 V24 Z" fill="var(--house)" stroke="var(--house-2)" stroke-width="3"/>
+        <path d="M60 14 L102 30 V72 C102 100 82 117 60 126 C38 117 18 100 18 72 V30 Z" fill="none" stroke="var(--house-2)" stroke-width="1.5" opacity=".7"/>
+        <g id="crestGlyph" fill="var(--house-2)"></g>
+      </svg>
+      <p class="housename" id="houseName"></p>
+      <p class="center lead" id="houseLine"></p>
+      <p class="center" style="margin-top:18px"><button class="btn" id="toPotions">Down to the dungeons</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POTIONS ============ -->
+<section class="chamber" id="potions" hidden>
+  <div class="card">
+    <button class="relic" data-relic="4" style="right:20px;top:20px" aria-label="A hidden relic">
+      <svg viewBox="0 0 24 24"><path d="M9 2 h6 v5 l4 9 a5 5 0 0 1 -4.6 6.9 h-4.8 A5 5 0 0 1 5 16 l4 -9 Z" fill="var(--gold-hi)" opacity=".9"/><path d="M8 2 h8" stroke="var(--gold-deep)" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="mascot" data-prop="ladle" data-face="think"></div>
+    <p class="sub center">Potions — Practical Examination</p>
+    <h2 class="center">Amortentia</h2>
+    <p class="center lead" style="margin-bottom:14px">The most dangerous potion in the room. It smells different to every person who leans over it — of whatever they love most. Three ingredients are missing. Each riddle names one; take it down from the shelf.</p>
+    <svg class="cauldron" viewBox="0 0 160 130" aria-hidden="true">
+      <ellipse cx="80" cy="120" rx="46" ry="7" fill="#000" opacity=".35"/>
+      <path d="M26 52 h108 a10 10 0 0 1 10 10 c0 32 -28 56 -64 56 s-64 -24 -64 -56 a10 10 0 0 1 10 -10 Z" fill="#2b2b33"/>
+      <ellipse cx="80" cy="53" rx="56" ry="12" fill="#3a3a45"/>
+      <g class="brew"><ellipse id="brewTop" cx="80" cy="53" rx="48" ry="9.5" fill="#6f5f86" opacity=".95"/></g>
+      <circle id="b1" cx="64" cy="48" r="3.5" fill="#cbb3e0" opacity=".8"/>
+      <circle id="b2" cx="92" cy="51" r="2.6" fill="#cbb3e0" opacity=".6"/>
+      <path d="M40 118 l-8 10 M120 118 l8 10" stroke="#2b2b33" stroke-width="7" stroke-linecap="round"/>
+    </svg>
+    <p class="pips" id="potPips">○ ○ ○</p>
+    <p class="riddle" id="riddle"></p>
+    <div class="shelf" id="shelf"></div>
+    <p class="msg center" id="potMsg">&nbsp;</p>
+  </div>
+</section>
+
+<!-- ============ GIFT ONE ============ -->
+<section class="chamber" id="gift1" hidden>
+  <div class="card gift">
+    <div class="sparkles" id="sp1"></div>
+    <button class="relic" data-relic="5" style="left:20px;bottom:18px" aria-label="A hidden relic">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="5" fill="var(--gold-hi)"/><path d="M12 5 a5 5 0 0 1 0 10 a3.4 3.4 0 0 0 0 -10 Z" fill="var(--gold-deep)" opacity=".6"/><path d="M12 15 v7 M12 18 l4 -3" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>
+    </button>
+    <div class="mascot" data-prop="perfume" data-face="happy"></div>
+    <p class="sub center">The first gift</p>
+    <svg class="bottle" viewBox="0 0 120 210" aria-label="An elegant perfume bottle">
+      <defs>
+        <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#b8486f"/><stop offset=".3" stop-color="#f08cb0"/>
+          <stop offset=".58" stop-color="#e0668f"/><stop offset="1" stop-color="#a83c62"/>
+        </linearGradient>
+        <linearGradient id="capG" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#9c7a2e"/><stop offset=".35" stop-color="#f0d79a"/>
+          <stop offset=".7" stop-color="#c9a04a"/><stop offset="1" stop-color="#8a6a29"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="60" cy="202" rx="34" ry="5" fill="#000" opacity=".4"/>
+      <rect x="47" y="10" width="26" height="30" rx="4" fill="url(#capG)"/>
+      <rect x="47" y="17" width="26" height="3" fill="#8a6a29" opacity=".5"/>
+      <rect x="53" y="38" width="14" height="10" fill="#8a6a29"/>
+      <path d="M40 48 h40 c7 14 10 24 8 36 c-3 16 -12 22 -12 46 c0 26 8 34 10 52 c1 12 -6 20 -26 20 s-27 -8 -26 -20 c2 -18 10 -26 10 -52 c0 -24 -9 -30 -12 -46 c-2 -12 1 -22 8 -36 Z" fill="url(#glass)"/>
+      <path d="M46 54 c-5 12 -6 20 -4 30 c3 14 10 20 10 42 c0 24 -7 32 -9 50" fill="none" stroke="#fbd0e0" stroke-width="3.5" opacity=".55" stroke-linecap="round"/>
+      <rect x="32" y="188" width="56" height="12" rx="3" fill="#e8e4df" opacity=".85"/>
+      <rect x="32" y="188" width="56" height="12" rx="3" fill="none" stroke="#b9b2a8"/>
+      <g fill="url(#capG)">
+        <circle cx="45" cy="84" r="11"/><circle cx="75" cy="84" r="11"/>
+        <circle cx="45" cy="84" r="6.5" fill="#8a6a29" opacity=".45"/><circle cx="75" cy="84" r="6.5" fill="#8a6a29" opacity=".45"/>
+        <path d="M34 84 h-6 M86 84 h6" stroke="url(#capG)" stroke-width="4" stroke-linecap="round"/>
+        <path d="M28 84 c-6 -6 -6 -10 -2 -14 c4 6 6 8 2 14 Z M92 84 c6 -6 6 -10 2 -14 c-4 6 -6 8 -2 14 Z"/>
+      </g>
+    </svg>
+    <p class="giftname">La Belle Rosea</p>
+    <p class="giftsub">Jean Paul Gaultier</p>
+    <p>Officially this is a love potion and therefore contraband, so please don't mention where you got it. Unofficially it is a perfume, it is rose-pink, it wears gold roses, and even its name means rosy. It was chosen because it looked as though it already belonged to you.</p>
+    <p class="lead">One gift down. The second is harder, and it is alive, which means it will not be rushed.</p>
+    <p class="center" style="margin-top:20px"><button class="btn" id="toGreenhouse">Out to the greenhouses</button></p>
+  </div>
+</section>
+
+<!-- ============ GREENHOUSE ============ -->
+<section class="chamber" id="greenhouse" hidden>
+  <div class="card">
+    <button class="relic" data-relic="6" style="right:22px;bottom:20px" aria-label="A hidden relic">
+      <svg viewBox="0 0 24 24"><ellipse cx="12" cy="14" rx="6" ry="7.5" fill="var(--gold-hi)"/><path d="M6 9 q6 -4 12 0 M12 6.5 v-3 M12 3.5 q2 -2 4 -1" stroke="var(--gold-deep)" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+    </button>
+    <div class="mascot" data-prop="none" data-face="smile"></div>
+    <p class="sub center">Herbology — Greenhouse Three</p>
+    <h2 class="center">A seed that will not be hurried</h2>
+    <p class="center lead">There is one seed left in the tray, and it is a fussy one. It will not sprout for anybody who has not earned it. Three enchantments are keeping it shut. Break all three and it will grow for you.</p>
+    <div class="locks">
+      <div class="lock" id="lockRunes"><span class="mark">✦</span><span><b>The First Enchantment</b><small>Ancient Runes — a message in the soil</small></span></div>
+      <div class="lock" id="lockMemory"><span class="mark">✦</span><span><b>The Second Enchantment</b><small>Care of Magical Creatures — matched pairs</small></span></div>
+      <div class="lock" id="lockHunt"><span class="mark">✦</span><span><b>The Third Enchantment</b><small>Seven relics, scattered through the castle</small></span></div>
+    </div>
+    <p class="center" style="margin-top:20px"><button class="btn" id="startLocks">Break the first enchantment</button></p>
+  </div>
+</section>
+
+<!-- ============ RUNES ============ -->
+<section class="chamber" id="runes" hidden>
+  <div class="card center">
+    <button class="relic" data-relic="7" style="left:22px;bottom:20px" aria-label="A hidden relic">
+      <svg viewBox="0 0 24 24"><path d="M20.5 14.5 A9 9 0 1 1 9.5 3.5 A7 7 0 0 0 20.5 14.5 Z" fill="var(--gold-hi)"/></svg>
+    </button>
+    <div class="mascot" data-prop="quill" data-face="think"></div>
+    <p class="sub">The First Enchantment — Ancient Runes</p>
+    <h2>The message in the soil</h2>
+    <p class="lead" style="max-width:30em;margin:0 auto 6px">Somebody carved a line into the rim of the pot, a very long time ago, and they did not use our alphabet. Match each rune to the key and type the line out below. Every rune you read correctly turns gold.</p>
+    <div class="runekey" id="runekey" aria-label="The rune key"></div>
+    <div class="cipher" id="cipher" aria-label="The carved line, in runes"></div>
+    <input type="text" id="runeIn" placeholder="one letter for each rune" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" aria-label="Your translation">
+    <p class="rcount" id="runeCount">0 of 18 runes read</p>
+    <p><button class="btn" id="runeGo" style="margin-top:10px">Speak it</button></p>
+    <p class="msg" id="runeMsg">&nbsp;</p>
+  </div>
+</section>
+
+<!-- ============ MEMORY ============ -->
+<section class="chamber" id="memory" hidden>
+  <div class="card center">
+    <div class="mascot" data-prop="wand" data-face="smile"></div>
+    <p class="sub">The Second Enchantment — Matched Pairs</p>
+    <h2>Six creatures, twice each</h2>
+    <p class="lead" style="max-width:30em;margin:0 auto">They have hidden themselves in the hedge and they are not above cheating. Turn two cards at a time and find every pair.</p>
+    <div class="grid" id="mgrid"></div>
+    <p class="msg" id="memMsg">&nbsp;</p>
+  </div>
+</section>
+
+<!-- ============ HUNT ============ -->
+<section class="chamber" id="hunt" hidden>
+  <div class="card center">
+    <div class="mascot" data-prop="lantern" data-face="wow"></div>
+    <p class="sub">The Third Enchantment — The Relic Hunt</p>
+    <h2>Seven things, badly hidden</h2>
+    <p class="lead" style="max-width:31em;margin:0 auto 6px">Seven small objects have been tucked into the corners of everything you have already walked past: a star, a feather, a key, a phial, a rose, an acorn, a moon. They are faint, and they glimmer when you get near.</p>
+    <p>Scroll back up through the whole castle and tap every one you find. They are all on this page, tucked into the chambers you have already walked through. Stuck? Tap <i>hint</i> once for a nudge, and again to make the next one glow.</p>
+    <p class="msg" id="huntMsg">&nbsp;</p>
+    <p style="margin-top:14px"><button class="btn" id="huntGo">Begin the search</button></p>
+  </div>
+</section>
+
+<!-- ============ BLOOM ============ -->
+<section class="chamber" id="bloom" hidden>
+  <div class="card center">
+    <div class="mascot" data-prop="can" data-face="smile"></div>
+    <p class="sub">Herbology — Practical</p>
+    <h2 id="bloomTitle">Now the patience</h2>
+    <p class="lead" id="bloomLead" style="max-width:30em;margin:0 auto 4px">All three enchantments are broken and the seed is in the soil. It grows at its own speed and not at yours. Water it, wait, water it again.</p>
+    <svg class="plant" viewBox="0 0 300 300" aria-label="A plant growing from soil">
+      <defs>
+        <radialGradient id="petalG" cx=".42" cy=".38" r=".7">
+          <stop offset="0" stop-color="var(--peony-hi)"/><stop offset=".6" stop-color="var(--peony)"/>
+          <stop offset="1" stop-color="var(--peony-deep)"/>
+        </radialGradient>
+      </defs>
+      <path d="M46 300 C46 262 74 250 150 250 C226 250 254 262 254 300 Z" fill="#5a4330"/>
+      <path d="M52 262 C92 250 208 250 248 262 C210 254 90 254 52 262 Z" fill="#6d5340"/>
+      <g id="pSeed"><ellipse cx="150" cy="252" rx="7" ry="5" fill="#8a6a44"/></g>
+      <g id="pStem" class="grow hidden-part">
+        <path d="M150 254 C147 220 152 196 150 168" stroke="var(--green)" stroke-width="7" fill="none" stroke-linecap="round"/>
+      </g>
+      <g id="pLeaves" class="grow hidden-part">
+        <path d="M149 228 C122 224 106 206 104 186 C130 188 146 204 149 228 Z" fill="var(--green)"/>
+        <path d="M151 210 C178 206 194 188 196 168 C170 170 154 186 151 210 Z" fill="var(--green-hi)"/>
+        <path d="M112 190 C126 199 140 214 148 226 M188 172 C174 181 160 196 152 208" stroke="var(--green-deep)" stroke-width="1.6" fill="none" opacity=".6"/>
+      </g>
+      <g id="pBud" class="grow hidden-part">
+        <path d="M150 170 C134 166 130 146 138 132 C144 122 156 122 162 132 C170 146 166 166 150 170 Z" fill="var(--green-hi)"/>
+        <path d="M150 168 C142 162 140 146 145 134 M150 168 C158 162 160 146 155 134" stroke="var(--green-deep)" stroke-width="1.5" fill="none" opacity=".55"/>
+      </g>
+      <g id="pBloom" class="grow hidden-part">
+        <g fill="url(#petalG)">
+          <ellipse cx="150" cy="128" rx="54" ry="40" opacity=".92"/>
+          <ellipse cx="116" cy="112" rx="30" ry="25" transform="rotate(-24 116 112)"/>
+          <ellipse cx="184" cy="112" rx="30" ry="25" transform="rotate(24 184 112)"/>
+          <ellipse cx="124" cy="146" rx="28" ry="22" transform="rotate(18 124 146)"/>
+          <ellipse cx="176" cy="146" rx="28" ry="22" transform="rotate(-18 176 146)"/>
+          <ellipse cx="150" cy="98" rx="30" ry="22"/>
+          <ellipse cx="150" cy="152" rx="32" ry="20"/>
+          <ellipse cx="134" cy="126" rx="21" ry="18" fill="var(--peony-hi)" opacity=".85"/>
+          <ellipse cx="166" cy="126" rx="21" ry="18" fill="var(--peony-hi)" opacity=".85"/>
+          <ellipse cx="150" cy="116" rx="18" ry="15" fill="var(--peony-hi)"/>
+          <ellipse cx="150" cy="132" rx="14" ry="12" fill="var(--peony)"/>
+        </g>
+        <g fill="#f4d98a" opacity=".9">
+          <circle cx="146" cy="124" r="2.4"/><circle cx="155" cy="122" r="2.2"/>
+          <circle cx="150" cy="131" r="2.4"/><circle cx="143" cy="131" r="1.9"/><circle cx="158" cy="130" r="1.9"/>
+        </g>
+      </g>
+    </svg>
+    <p class="msg" id="bloomMsg">&nbsp;</p>
+    <p><button class="btn" id="water">Water it</button></p>
+  </div>
+</section>
+
+<!-- ============ GIFT TWO ============ -->
+<section class="chamber" id="gift2" hidden>
+  <div class="card gift">
+    <div class="sparkles" id="sp2"></div>
+    <div class="mascot" data-prop="bouquet" data-face="happy"></div>
+    <p class="sub center">The second gift</p>
+    <svg class="flower frame-in" viewBox="0 0 240 280" style="max-width:250px" aria-label="A peony inside a gilt frame">
+      <defs>
+        <radialGradient id="petalG2" cx=".42" cy=".38" r=".7">
+          <stop offset="0" stop-color="var(--peony-hi)"/><stop offset=".6" stop-color="var(--peony)"/>
+          <stop offset="1" stop-color="var(--peony-deep)"/>
+        </radialGradient>
+        <linearGradient id="fr" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#f0d79a"/><stop offset=".35" stop-color="#c9a04a"/>
+          <stop offset=".65" stop-color="#8a6a29"/><stop offset="1" stop-color="#e2c684"/>
+        </linearGradient>
+      </defs>
+      <rect x="8" y="8" width="224" height="264" rx="4" fill="url(#fr)"/>
+      <rect x="22" y="22" width="196" height="236" rx="2" fill="#231a2e"/>
+      <rect x="22" y="22" width="196" height="236" rx="2" fill="none" stroke="#8a6a29" stroke-width="2"/>
+      <rect x="28" y="28" width="184" height="224" fill="#f6eee2"/>
+      <g transform="translate(120,176)">
+        <path d="M0 62 C-3 30 3 6 0 -22" stroke="var(--green)" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M-2 26 C-26 22 -40 6 -42 -12 C-18 -10 -4 4 -2 26 Z" fill="var(--green)"/>
+        <path d="M2 12 C26 8 40 -8 42 -26 C18 -24 4 -10 2 12 Z" fill="var(--green-hi)"/>
+        <g fill="url(#petalG2)" transform="translate(0,-52)">
+          <ellipse cx="0" cy="0" rx="48" ry="36" opacity=".92"/>
+          <ellipse cx="-30" cy="-14" rx="26" ry="22" transform="rotate(-24 -30 -14)"/>
+          <ellipse cx="30" cy="-14" rx="26" ry="22" transform="rotate(24 30 -14)"/>
+          <ellipse cx="-24" cy="16" rx="25" ry="19" transform="rotate(18 -24 16)"/>
+          <ellipse cx="24" cy="16" rx="25" ry="19" transform="rotate(-18 24 16)"/>
+          <ellipse cx="0" cy="-26" rx="27" ry="19"/><ellipse cx="0" cy="22" rx="28" ry="17"/>
+          <ellipse cx="-15" cy="-2" rx="19" ry="16" fill="var(--peony-hi)" opacity=".85"/>
+          <ellipse cx="15" cy="-2" rx="19" ry="16" fill="var(--peony-hi)" opacity=".85"/>
+          <ellipse cx="0" cy="-10" rx="16" ry="13" fill="var(--peony-hi)"/>
+          <ellipse cx="0" cy="5" rx="12" ry="10" fill="var(--peony)"/>
+        </g>
+        <g fill="#f4d98a" opacity=".9" transform="translate(0,-52)">
+          <circle cx="-4" cy="-3" r="2.2"/><circle cx="5" cy="-5" r="2"/><circle cx="0" cy="4" r="2.2"/>
+        </g>
+      </g>
+      <rect x="8" y="8" width="224" height="264" rx="4" fill="none" stroke="#6a5220" stroke-width="1.5"/>
+    </svg>
+    <p class="giftname">A peony, framed</p>
+    <p class="giftsub">grown under glass, one petal at a time</p>
+    <p>Peonies are the show-offs of the flower world. They take years to settle before they bloom properly, they collapse dramatically in the rain, and they are worth every bit of the trouble. It seemed fitting.</p>
+    <p><b>This one is not on the screen.</b> There is a real one, in a real frame, and it is waiting somewhere in the actual world for you to be handed it. Consider this your official notice that it exists.</p>
+    <p class="center" style="margin-top:20px"><button class="btn" id="toFinale">One last thing</button></p>
+  </div>
+</section>
+
+<!-- ============ FINALE ============ -->
+<section class="chamber" id="finale" hidden>
+  <div class="card gift center">
+    <div class="sparkles" id="sp3"></div>
+    <p class="sub">Hung in the common room, this evening</p>
+    <div class="gframe">
+      <div class="inner">
+        <div class="mascot lg" data-prop="bouquet" data-face="happy" data-hat="1"></div>
+      </div>
+      <div class="plaque" id="plaque">HOUSE</div>
+    </div>
+    <p id="finaleLine" class="lead" style="max-width:31em;margin:0 auto 14px"></p>
+    <p style="max-width:31em;margin:0 auto">Congratulations on your examinations, on your twenty-fifth year, and on being the sort of person somebody builds an entire castle for.</p>
+    <p class="giftname" id="finaleHB" style="margin-top:22px">Happy birthday</p>
+    <p class="giftsub" id="signOff">— 19 November 2026 —</p>
+    <p style="margin-top:18px"><button class="btn ghost" id="replay">Wipe the slate and start again</button></p>
+  </div>
+</section>
+
+<footer id="foot" hidden>Mischief, on this occasion, entirely managed.</footer>
+</div>
+
+<div class="tracker" id="tracker" role="status">
+  <span class="ticons" id="ticons"></span>
+  <span id="trackCount">0 / 7</span>
+  <button id="hintBtn" type="button">hint</button>
+</div>
+
+<script>
+(function(){
+  var $ = function(i){ return document.getElementById(i); };
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ===== THE ONLY TWO LINES YOU NEED TO EDIT ===================================
+     HER  = her name, as you would write it at the top of a letter
+     FROM = how you want to sign it (leave the quotes empty to stay anonymous)  */
+  var HER  = "Nawa";
+  var FROM = "";
+  /* ============================================================================ */
+  if (HER){
+    $('salutation').textContent = 'Dearest ' + HER + ',';
+    $('finaleHB').textContent = 'Happy birthday, ' + HER;
+  }
+  if (FROM){
+    $('fromName').textContent = FROM;
+    $('letterSign').hidden = false;
+    $('signOff').textContent = 'with love, ' + FROM + ' \u00B7 19 November 2026';
+  }
+
+  /* ---------- saved progress: she can close the page and pick up where she left off ---------- */
+  var KEY = 'owlpost-progress-v2';
+  var ORDER = ['arrival','letter','sorting','potions','gift1','greenhouse','runes','memory','hunt','bloom','gift2','finale'];
+  var P = { step:0, house:null, sorted:false, potions:false, runes:false, runeText:'', memory:false,
+            huntStarted:false, relics:[], hunt:false, bloom:false, bloomStage:0 };
+  if (/[?&]fresh\b/.test(location.search)){            /* testing helper: add ?fresh to the address to start over */
+    try { localStorage.removeItem(KEY); } catch(e){}
+    try { history.replaceState(null, '', location.pathname); } catch(e){}
+  }
+  var resumed = false;
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (saved && typeof saved.step === 'number' && saved.step > 0){
+      for (var key in P) if (Object.prototype.hasOwnProperty.call(saved, key)) P[key] = saved[key];
+      resumed = true;
+    }
+  } catch(e){}
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(P)); } catch(e){} }
+
+  function reveal(id){
+    var el = $(id);
+    if (!el.hidden) return;
+    el.hidden = false;
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ el.classList.add('in'); }); });
+  }
+  function goTo(id, block){
+    setTimeout(function(){ $(id).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: block || 'start' }); }, 140);
+  }
+  function unlock(id){
+    var i = ORDER.indexOf(id);
+    reveal(id);
+    if (i > P.step){ P.step = i; save(); }
+    goTo(id);
+  }
+  function say(el, text, kind){
+    var centered = el.classList.contains('center');
+    el.textContent = text;
+    el.className = 'msg' + (kind ? ' ' + kind : '') + (centered ? ' center' : '');
+    if (!reduce && text && text !== '\u00A0'){ void el.offsetWidth; el.classList.add('flash'); }
+  }
+  function restartAnim(el, cls){
+    if (!el) return;
+    el.classList.remove(cls);
+    if (reduce) return;
+    void el.offsetWidth; el.classList.add(cls);
+  }
+  /* a ring and a scatter of sparkles at a point on screen */
+  function burstAt(x, y, n, colors){
+    if (reduce) return;
+    colors = colors || ['#f6dc9a', '#eccb86', '#fff6dc'];
+    var host = document.createElement('div');
+    host.className = 'burst'; host.style.left = x + 'px'; host.style.top = y + 'px';
+    var ring = document.createElement('i'); ring.className = 'bring'; ring.style.borderColor = colors[0];
+    host.appendChild(ring);
+    for (var i = 0; i < n; i++){
+      var pt = document.createElement('i');
+      pt.className = i % 3 === 0 ? 'bp star' : 'bp';
+      var ang = (i / n) * Math.PI * 2 + Math.random() * 0.5, dist = 30 + Math.random() * 34;
+      pt.style.setProperty('--dx', (Math.cos(ang) * dist).toFixed(1) + 'px');
+      pt.style.setProperty('--dy', (Math.sin(ang) * dist).toFixed(1) + 'px');
+      pt.style.background = colors[i % colors.length];
+      pt.style.animationDelay = Math.round(Math.random() * 70) + 'ms';
+      host.appendChild(pt);
+    }
+    document.body.appendChild(host);
+    setTimeout(function(){ host.remove(); }, 1150);
+  }
+  function centerOf(el){ var r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }
+  function toast(text, ms){
+    ms = ms || 2200;
+    var t = document.createElement('div');
+    t.className = 'found-toast'; t.textContent = text; t.style.animationDuration = ms + 'ms';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.remove(); }, ms + 100);
+  }
+  function sparkle(host, n){
+    for (var i = 0; i < (n || 22); i++){
+      (function(i){
+        setTimeout(function(){
+          var s = document.createElement('span');
+          s.className = 'spark';
+          s.style.left = (6 + Math.random() * 88) + '%';
+          s.style.top = (55 + Math.random() * 40) + '%';
+          s.style.animationDuration = (2.2 + Math.random() * 1.6) + 's';
+          host.appendChild(s);
+          setTimeout(function(){ s.remove(); }, 4200);
+        }, i * 90);
+      })(i);
+    }
+  }
+  function shuffle(a){
+    for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+  function each(sel, fn){ Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
+
+  /* ---------- the chibi ---------- */
+  var HAIR='#3b2417', HAIR2='#5e3a22', HAIR3='#8a5a34', SKIN='#efc9a2', SKIN2='#d7a67a',
+      ROBE='#171423', ROBE2='#2e2742', DRESS='#221d2d', VEST='#2d7a3d', VEST2='#d8436b',
+      GOLD='#c9a04a', GOLD2='#eccb86', LIP='#d06a80', LIP2='#8e4152';
+
+  function hairBack(){
+    var s = '<g fill="' + HAIR + '"><ellipse cx="100" cy="134" rx="76" ry="106"/>';
+    var ring = [[30,92,21],[22,138,22],[26,184,21],[38,220,18],[56,240,14],
+                [170,92,21],[178,138,22],[174,184,21],[162,220,18],[144,240,14],
+                [34,60,20],[56,40,22],[96,30,24],[136,38,22],[164,58,20]];
+    for (var i=0;i<ring.length;i++) s += '<circle cx="'+ring[i][0]+'" cy="'+ring[i][1]+'" r="'+ring[i][2]+'"/>';
+    s += '</g><g fill="' + HAIR2 + '" opacity=".5">';
+    var hi = [[40,80,10],[26,120,9],[24,164,9],[38,202,8],[66,32,9],[172,122,9],[170,166,8],[156,202,8]];
+    for (var j=0;j<hi.length;j++) s += '<circle cx="'+hi[j][0]+'" cy="'+hi[j][1]+'" r="'+hi[j][2]+'"/>';
+    return s + '</g>';
+  }
+  function hairFront(){
+    var s = '<g fill="' + HAIR + '">';
+    s += '<circle cx="70" cy="46" r="22"/><circle cx="47" cy="65" r="20"/><circle cx="96" cy="37" r="20"/>';
+    s += '<circle cx="124" cy="44" r="22"/><circle cx="149" cy="61" r="20"/>';
+    s += '<circle cx="42" cy="93" r="19"/><circle cx="40" cy="121" r="18"/><circle cx="43" cy="151" r="17"/><circle cx="49" cy="181" r="16"/><circle cx="59" cy="208" r="14"/>';
+    s += '<circle cx="158" cy="91" r="19"/><circle cx="160" cy="119" r="18"/><circle cx="157" cy="149" r="17"/><circle cx="151" cy="179" r="16"/><circle cx="141" cy="206" r="14"/>';
+    s += '</g>';
+    s += '<g fill="' + HAIR3 + '" opacity=".4"><circle cx="78" cy="40" r="7"/><circle cx="116" cy="38" r="6"/><circle cx="52" cy="99" r="6"/><circle cx="150" cy="97" r="6"/><circle cx="46" cy="160" r="6"/></g>';
+    return s;
+  }
+  function eye(cx, cy, side, big, lookUp){
+    var rx = big ? 9.6 : 8.6, ry = big ? 12.2 : 11, py = lookUp ? -2.2 : 1;
+    var o = side < 0 ? -1 : 1;            /* outer corner direction */
+    var s = '';
+    s += '<ellipse cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'" fill="#6b4128"/>';
+    s += '<ellipse cx="'+cx+'" cy="'+(cy+py)+'" rx="'+(rx*0.6)+'" ry="'+(ry*0.66)+'" fill="#2b1a10"/>';
+    s += '<circle cx="'+(cx+2.8)+'" cy="'+(cy-4+py*0.4)+'" r="3.4" fill="#fff"/>';
+    s += '<circle cx="'+(cx-3)+'" cy="'+(cy+4.2)+'" r="1.5" fill="#fff" opacity=".8"/>';
+    var x1 = cx + o*(rx+1.2), x2 = cx - o*(rx+1.2);
+    s += '<path d="M'+x2+' '+(cy-3)+' Q'+cx+' '+(cy-ry-6.5)+' '+x1+' '+(cy-4)+'" fill="none" stroke="#2b1a10" stroke-width="3.6" stroke-linecap="round"/>';
+    s += '<path d="M'+x1+' '+(cy-4)+' l'+(o*5.5)+' -2.6 M'+(x1-o*2.2)+' '+(cy-8.5)+' l'+(o*4)+' -4.6" stroke="#2b1a10" stroke-width="2.4" stroke-linecap="round"/>';
+    return s;
+  }
+  function closedEye(cx, cy, side){
+    var o = side < 0 ? -1 : 1, x1 = cx + o*9.5, x2 = cx - o*9.5;
+    return '<path d="M'+x2+' '+(cy+1)+' Q'+cx+' '+(cy-10)+' '+x1+' '+(cy+1)+'" fill="none" stroke="#2b1a10" stroke-width="3.8" stroke-linecap="round"/>' +
+           '<path d="M'+x1+' '+(cy+1)+' l'+(o*4.8)+' -1.6 M'+(x1-o*1.6)+' '+(cy-3.2)+' l'+(o*3.8)+' -3.6" stroke="#2b1a10" stroke-width="2.2" stroke-linecap="round"/>';
+  }
+  function facePart(face){
+    var browUp = (face === 'wow' || face === 'happy');
+    var s = '';
+    s += browUp
+      ? '<path d="M95 81 C90 76 82 74.5 73 78.5" fill="none" stroke="#4a3122" stroke-width="2.6" stroke-linecap="round"/><path d="M105 81 C110 76 118 74.5 127 78.5" fill="none" stroke="#4a3122" stroke-width="2.6" stroke-linecap="round"/>'
+      : '<path d="M95 86 C90 81.5 82 80 73 84" fill="none" stroke="#4a3122" stroke-width="2.6" stroke-linecap="round"/><path d="M105 86 C110 81.5 118 80 127 84" fill="none" stroke="#4a3122" stroke-width="2.6" stroke-linecap="round"/>';
+    if (face === 'happy') s += closedEye(82, 107, -1) + closedEye(118, 107, 1);
+    else s += eye(82, 106, -1, face === 'wow', face === 'think') + eye(118, 106, 1, face === 'wow', face === 'think');
+    /* delicate nose */
+    s += '<path d="M99.4 116.5 q2 2.2 -.4 3.4" fill="none" stroke="' + SKIN2 + '" stroke-width="1.9" stroke-linecap="round"/>';
+    /* soft blush */
+    s += '<g fill="#ec8a9c"><ellipse cx="65" cy="121" rx="11" ry="6.4" opacity=".22"/><ellipse cx="65" cy="121" rx="6.8" ry="3.9" opacity=".3"/>' +
+         '<ellipse cx="135" cy="121" rx="11" ry="6.4" opacity=".22"/><ellipse cx="135" cy="121" rx="6.8" ry="3.9" opacity=".3"/></g>';
+    /* mouth */
+    if (face === 'happy'){
+      s += '<path d="M93 125.6 Q100 127 107 125.6 Q105.6 133.8 100 133.8 Q94.4 133.8 93 125.6 Z" fill="#9a4458"/>';
+      s += '<ellipse cx="100" cy="131.4" rx="3.6" ry="1.9" fill="#e58a9a"/>';
+      s += '<path d="M93 125.6 Q100 127 107 125.6" fill="none" stroke="' + LIP + '" stroke-width="1.8" stroke-linecap="round"/>';
+    } else if (face === 'wow'){
+      s += '<ellipse cx="100" cy="129.4" rx="3.7" ry="4.5" fill="#9a4458" stroke="' + LIP + '" stroke-width="1.6"/>';
+    } else if (face === 'think'){
+      s += '<path d="M97 129 C99 127.2 101.5 127 103 128.4 C104.4 127.4 106 128 106.6 129.2 C104.8 132 99 132 97 129 Z" fill="' + LIP + '"/>';
+      s += '<ellipse cx="103.4" cy="130.3" rx="1.4" ry=".7" fill="#fff" opacity=".5"/>';
+    } else {
+      s += '<path d="M93.6 127 C95.6 124.7 98.6 124.5 100 126.2 C101.4 124.5 104.4 124.7 106.4 127 C104.4 131.4 95.6 131.4 93.6 127 Z" fill="' + LIP + '"/>';
+      s += '<path d="M94.4 127 Q100 129.4 105.6 127" fill="none" stroke="' + LIP2 + '" stroke-width="1.1" stroke-linecap="round" opacity=".75"/>';
+      s += '<ellipse cx="102" cy="129.3" rx="1.9" ry=".85" fill="#fff" opacity=".55"/>';
+    }
+    return s;
+  }
+  function hatPart(){
+    return '<g><path d="M57 40 C65 6 79 -28 97 -54 C105 -63 120 -60 117 -47 C113 -30 121 -18 127 -5 C135 13 141 29 145 41 C121 53 81 53 57 40 Z" fill="#6b5844"/>' +
+      '<path d="M78 8 q22 10 42 -2 M68 26 q30 13 60 -1" fill="none" stroke="#4d3d2d" stroke-width="3" stroke-linecap="round" opacity=".75"/>' +
+      '<ellipse cx="100" cy="46" rx="76" ry="17" fill="#5c4b38"/><ellipse cx="100" cy="43" rx="76" ry="16" fill="#75604a"/>' +
+      '<path d="M38 48 q62 20 124 0" fill="none" stroke="#4a3b2c" stroke-width="2.5" opacity=".55"/></g>';
+  }
+  var PROPS = {
+    letter:  ['right','<g transform="translate(152,162) rotate(-13)"><rect x="-21" y="-15" width="42" height="30" rx="2" fill="#f4e8cf" stroke="#c6ae85" stroke-width="1.5"/><path d="M-21 -15 L0 2 L21 -15" fill="none" stroke="#c6ae85" stroke-width="1.6"/><circle cx="0" cy="3" r="5.5" fill="#8e2f2f"/></g>'],
+    ladle:   ['right','<g transform="translate(150,160)"><path d="M2 -46 C6 -20 6 2 2 18" stroke="#8a6a29" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M-12 16 a14 10 0 0 0 28 0 Z" fill="#9aa0a8"/><path d="M-9 16 a11 7 0 0 0 22 0 Z" fill="#c3c8ce"/><circle cx="8" cy="-42" r="4" fill="#c9a04a"/></g>'],
+    quill:   ['right','<g transform="translate(150,158) rotate(24)"><path d="M0 24 C-2 2 4 -22 14 -40 C20 -24 18 2 8 22 Z" fill="#f2e6cd" stroke="#c6ae85" stroke-width="1.2"/><path d="M8 22 C6 4 9 -14 14 -38" stroke="#c6ae85" stroke-width="1.4" fill="none"/><path d="M0 24 l-6 12" stroke="#3a3a45" stroke-width="3.5" stroke-linecap="round"/></g>'],
+    wand:    ['right','<g transform="translate(150,160) rotate(-32)"><path d="M-4 20 C0 -4 4 -26 6 -44" stroke="#5a4330" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="6" cy="-46" r="4.5" fill="#eccb86"/><g fill="#eccb86" opacity=".9"><circle cx="18" cy="-58" r="2.6"/><circle cx="-4" cy="-62" r="2"/><circle cx="12" cy="-72" r="1.7"/></g></g>'],
+    lantern: ['right','<g transform="translate(152,166)"><path d="M0 -34 v12" stroke="#8a6a29" stroke-width="4" fill="none"/><path d="M-12 -22 h24 l4 8 v22 l-4 8 h-24 l-4 -8 v-22 Z" fill="#3a3a45"/><path d="M-9 -16 h18 v28 h-18 Z" fill="#f6dc9a" opacity=".92"/><ellipse cx="0" cy="-2" rx="4.5" ry="7" fill="#fff3c6"/></g>'],
+    perfume: ['right','<g transform="translate(150,164)"><rect x="-7" y="-34" width="14" height="14" rx="3" fill="#e2c684"/><path d="M-13 -20 h26 c4 8 5 13 4 19 c-2 9 -7 12 -7 25 c0 14 4 18 5 27 h-30 c1 -9 5 -13 5 -27 c0 -13 -5 -16 -7 -25 c-1 -6 0 -11 4 -19 Z" fill="#e0668f"/><path d="M-9 -16 c-3 7 -3 11 -2 16 c2 8 6 11 6 23" stroke="#fbd0e0" stroke-width="2.6" fill="none" opacity=".6" stroke-linecap="round"/><circle cx="-6" cy="-2" r="5.5" fill="#e2c684"/><circle cx="6" cy="-2" r="5.5" fill="#e2c684"/></g>'],
+    can:     ['front','<g transform="translate(100,190)"><path d="M-20 -14 h34 c3 0 5 2 5 6 v20 c0 4 -2 6 -5 6 h-34 c-3 0 -5 -2 -5 -6 v-20 c0 -4 2 -6 5 -6 Z" fill="#8fa3ad"/><path d="M-20 -12 h34 v6 h-34 Z" fill="#b3c4cc"/><path d="M14 -8 l22 -14 l5 5 l-20 16 Z" fill="#8fa3ad"/><path d="M34 -24 l10 -6 l3 5 l-9 6 Z" fill="#b3c4cc"/><path d="M-14 -14 c0 -9 16 -9 16 0" fill="none" stroke="#8fa3ad" stroke-width="4"/><g fill="#a9c8e8" opacity=".85"><circle cx="44" cy="-14" r="2.4"/><circle cx="48" cy="-6" r="2"/><circle cx="42" cy="-3" r="1.7"/></g></g>'],
+    bouquet: ['front','<g transform="translate(100,188)"><path d="M0 22 C-2 8 0 -2 0 -8" stroke="#4f7a48" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M-2 10 C-14 8 -20 0 -21 -9 C-9 -8 -3 0 -2 10 Z" fill="#4f7a48"/><path d="M2 4 C14 2 20 -6 21 -15 C9 -14 3 -6 2 4 Z" fill="#8fbf7c"/><g fill="#e59ab4"><ellipse cx="0" cy="-20" rx="24" ry="18"/><ellipse cx="-15" cy="-28" rx="13" ry="11"/><ellipse cx="15" cy="-28" rx="13" ry="11"/><ellipse cx="-12" cy="-11" rx="12" ry="9"/><ellipse cx="12" cy="-11" rx="12" ry="9"/><ellipse cx="-7" cy="-21" rx="10" ry="8" fill="#f7d3de"/><ellipse cx="8" cy="-21" rx="10" ry="8" fill="#f7d3de"/><ellipse cx="0" cy="-17" rx="7" ry="6" fill="#f7d3de"/></g><g fill="#f4d98a"><circle cx="-2" cy="-18" r="2"/><circle cx="4" cy="-20" r="1.8"/></g></g>'],
+    none:    ['down','']
+  };
+  /* soft almond-toe pumps in her gold, on a gentle tapered heel; feet turned out in a little V */
+  var SHOE='#c99a3f', SHOE2='#8f6b26', SHOE3='#7a5a1e';
+  function heelShoe(x, dir){
+    return '<g transform="translate(' + x + ' 251) scale(' + (dir * 1.15) + ' 1.15)">' +
+      '<path d="M-5 -14 L4 -14 L4 -2 C8 0 12.5 3.2 17 6.1 L4 2.8 L-5.5 -2.5 Z" fill="' + SKIN + '"/>' +
+      '<path d="M-6.2 3.4 L-1.6 4.9 L-2.6 12.2 Q-3.6 12.9 -4.7 12.2 Z" fill="' + SHOE2 + '"/>' +
+      '<path d="M-5.5 -2.5 C-6.4 0 -6.2 2.8 -5 4.5 C1 6.5 7 9.2 12 10.4 C16 11.4 20.5 11.6 21.6 10 C22.5 8.4 20.6 6.6 17.5 6.1 C13 5.2 8 3.8 4 2.8 C0 1.4 -3 -0.8 -5.5 -2.5 Z" fill="' + SHOE + '" stroke="' + SHOE3 + '" stroke-width=".6" stroke-linejoin="round"/>' +
+      '<path d="M14.6 7.3 C17 7.9 19.2 8.3 20.3 8.9" fill="none" stroke="#f8e6b0" stroke-width="1.2" stroke-linecap="round" opacity=".8"/>' +
+      '<path d="M-4.9 -0.8 C-5.2 0.8 -5.1 2.2 -4.5 3.3" fill="none" stroke="#f8e6b0" stroke-width=".9" stroke-linecap="round" opacity=".5"/>' +
+      '</g>';
+  }
+  function chibi(prop, face, hat){
+    var def = PROPS[prop] || PROPS.none, mode = def[0], art = def[1];
+    var s = '<svg viewBox="0 -72 200 340" aria-hidden="true">';
+    s += hairBack();
+    s += '<ellipse cx="100" cy="266" rx="40" ry="2.6" fill="#000" opacity=".13"/>';
+    s += heelShoe(83, -1) + heelShoe(117, 1);
+    s += '<path d="M100 53 C127 53 147 72 147 99 C147 123 129 147 100 148 C71 147 53 123 53 99 C53 72 73 53 100 53 Z" fill="' + SKIN + '"/>';
+    s += hairFront();
+    s += '<g fill="' + GOLD + '"><circle cx="57" cy="127" r="1.8"/><circle cx="143" cy="127" r="1.8"/><circle cx="57" cy="135" r="3.4"/><circle cx="143" cy="135" r="3.4"/></g>';
+    s += '<path d="M57 128.5 v3.5 M143 128.5 v3.5" stroke="' + GOLD + '" stroke-width="1.3"/>';
+    s += facePart(face);
+    if (hat) s += hatPart();
+    /* open school robe, outermost */
+    s += '<path d="M100 144 C78 144 66 153 60 172 C55 190 52 216 51 242 h98 c-1 -26 -4 -52 -9 -70 C134 153 122 144 100 144 Z" fill="' + ROBE + '"/>';
+    /* black dress beneath */
+    s += '<path d="M100 146 C88 146 80 152 77 166 C73 188 72 216 72 242 h56 c0 -26 -1 -56 -5 -76 C120 152 112 146 100 146 Z" fill="' + DRESS + '"/>';
+    /* green floral vest, worn open */
+    s += '<path d="M83 150 C78 168 76 192 76 216 L91 218 C91 194 91 168 95 152 Z" fill="' + VEST + '"/>';
+    s += '<path d="M117 150 C122 168 124 192 124 216 L109 218 C109 194 109 168 105 152 Z" fill="' + VEST + '"/>';
+    s += '<g fill="' + VEST2 + '"><circle cx="83" cy="166" r="2.7"/><circle cx="86" cy="186" r="2.7"/><circle cx="82" cy="204" r="2.5"/><circle cx="117" cy="166" r="2.7"/><circle cx="114" cy="186" r="2.7"/><circle cx="118" cy="204" r="2.5"/></g>';
+    /* gold coin necklace */
+    s += '<path d="M85 147 Q100 163 115 147" fill="none" stroke="' + GOLD + '" stroke-width="1.8" opacity=".85"/>';
+    s += '<g fill="' + GOLD + '"><circle cx="88" cy="152" r="3.2"/><circle cx="94" cy="157" r="3.6"/><circle cx="100" cy="159" r="3.8"/><circle cx="106" cy="157" r="3.6"/><circle cx="112" cy="152" r="3.2"/></g>';
+    s += '<g fill="#c0392b"><circle cx="91" cy="148" r="1.9"/><circle cx="109" cy="148" r="1.9"/><circle cx="100" cy="152" r="1.7"/></g>';
+    /* gold belt */
+    s += '<path d="M74 208 q26 9 52 0 v9 q-26 9 -52 0 Z" fill="' + GOLD + '"/>';
+    s += '<path d="M77 211 q23 7 46 0" fill="none" stroke="#8a6a29" stroke-width="1.6" opacity=".7"/>';
+    /* house sash over one shoulder */
+    s += '<g><path d="M116 146 C130 150 138 158 141 170 L127 178 C125 165 118 155 109 151 Z" fill="var(--house)"/>';
+    s += '<path d="M128 174 l16 5 -9 64 -17 -6 Z" fill="var(--house)"/>';
+    s += '<g fill="var(--house-2)" opacity=".9"><path d="M131 194 l15 4 -2 13 -15 -4 Z"/><path d="M127 220 l15 5 -2 13 -15 -5 Z"/></g></g>';
+    /* arms */
+    if (mode === 'front'){
+      s += '<path d="M74 160 C64 174 72 184 84 188" stroke="' + ROBE2 + '" stroke-width="17" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M126 160 C136 174 128 184 116 188" stroke="' + ROBE2 + '" stroke-width="17" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M79 185 l9 6 M121 185 l-9 6" stroke="var(--house)" stroke-width="4.5" stroke-linecap="round"/>';
+      s += art;
+      s += '<circle cx="86" cy="190" r="9" fill="' + SKIN + '"/><circle cx="114" cy="190" r="9" fill="' + SKIN + '"/>';
+    } else if (mode === 'right'){
+      s += '<path d="M72 160 C60 176 56 198 58 214" stroke="' + ROBE2 + '" stroke-width="17" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M51 207 l14 3" stroke="var(--house)" stroke-width="4.5" stroke-linecap="round"/>';
+      s += '<circle cx="58" cy="216" r="9" fill="' + SKIN + '"/>';
+      s += '<path d="M128 158 C140 162 148 164 150 168" stroke="' + ROBE2 + '" stroke-width="16" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M144 160 l-3 13" stroke="var(--house)" stroke-width="4.5" stroke-linecap="round"/>';
+      s += art;
+      s += '<circle cx="150" cy="170" r="9" fill="' + SKIN + '"/>';
+    } else {
+      s += '<path d="M72 160 C60 176 56 198 58 214" stroke="' + ROBE2 + '" stroke-width="17" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M128 160 C140 176 144 198 142 214" stroke="' + ROBE2 + '" stroke-width="17" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M51 207 l14 3 M149 207 l-14 3" stroke="var(--house)" stroke-width="4.5" stroke-linecap="round"/>';
+      s += '<circle cx="58" cy="216" r="9" fill="' + SKIN + '"/><circle cx="142" cy="216" r="9" fill="' + SKIN + '"/>';
+    }
+    return s + '</svg>';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.mascot'), function(m){
+    m.innerHTML = chibi(m.dataset.prop || 'none', m.dataset.face || 'smile', m.dataset.hat === '1');
+  });
+
+  /* ---------- arrival ---------- */
+  var tag = $('tagline'), owl = $('owl'), opened = false;
+  function tell(t){ tag.classList.add('fade'); setTimeout(function(){ tag.textContent = t; tag.classList.remove('fade'); }, 320); }
+  function openLetter(){
+    if (opened){ goTo('letter'); return; }
+    opened = true;
+    owl.classList.add('perched', 'opened');
+    var ec = centerOf($('envelope')); burstAt(ec.x, ec.y, 16);
+    tell('It is addressed to you, in green ink.');
+    unlock('letter');
+  }
+  $('envelope').addEventListener('click', openLetter);
+  $('envelope').addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLetter(); } });
+  if (!resumed){
+    setTimeout(function(){ owl.classList.add('perched'); }, reduce ? 0 : 4700);
+    setTimeout(function(){ if (!opened) tell('Something has arrived for you.'); }, reduce ? 300 : 5000);
+    setTimeout(function(){ if (!opened) tell('Tap the letter to break the seal.'); }, reduce ? 1600 : 7800);
+  }
+
+  /* ---------- the sorting ---------- */
+  var QS = [
+    { q:'It is the first properly cold morning of the year. What do you reach for?',
+      a:[['A book you have already read twice','R'],['The coat that makes you look formidable','S'],['Whatever is nearest — you are already late for someone','H'],['Your boots. Something outside needs doing','G']] },
+    { q:'A locked door, and no key anywhere in the building.',
+      a:[['Study the lock until it explains itself','R'],['Find out who holds the key, and what they want for it','S'],['Knock. Somebody always answers eventually','H'],['Put your shoulder through it','G']] },
+    { q:'What sits on your desk?',
+      a:[['A landslide of half-finished notebooks','R'],['One perfect object and nothing else','S'],['Photographs of every person you love','H'],['Something you won','G']] },
+    { q:'Somebody tells you a secret you were never meant to hear.',
+      a:[['Turn it over quietly, looking for what it explains','R'],['Keep it. Knowing things is its own kind of currency','S'],['Keep it. It was handed to you in trust','H'],['Tell them to their face that they should come clean','G']] },
+    { q:'The perfect evening:',
+      a:[['Rain outside, one lamp on, one long chapter','R'],['A room in which you are quietly the most interesting person','S'],['Too many people in too small a kitchen','H'],['Somewhere you have never been before','G']] }
+  ];
+  var HOUSES = {
+    G:{ name:'Gryffindor', c:'#9e2a2b', c2:'#d4a017', t:'#8a2223',
+        line:'Nerve, and a temper you keep on a short leash. You go first so that other people do not have to.',
+        glyph:'<path d="M60 44 c-9 0 -15 6 -15 13 c0 6 4 9 4 14 c0 4 -3 6 -3 10 c0 8 7 13 14 13 s14 -5 14 -13 c0 -4 -3 -6 -3 -10 c0 -5 4 -8 4 -14 c0 -7 -6 -13 -15 -13 Z M48 54 l-10 -8 M72 54 l10 -8 M50 90 l-8 10 M70 90 l8 10"/>' },
+    R:{ name:'Ravenclaw', c:'#2a4a8b', c2:'#b08d57', t:'#24427d',
+        line:'Curiosity that will not switch off, and the patience to sit with a question until it gives in.',
+        glyph:'<path d="M60 42 c14 0 24 10 24 22 c0 14 -12 20 -12 30 l-24 0 c0 -10 -12 -16 -12 -30 c0 -12 10 -22 24 -22 Z M48 96 h24 M52 102 h16" opacity=".9"/><circle cx="60" cy="60" r="7" fill="none" stroke="var(--house-2)" stroke-width="2.5"/>' },
+    H:{ name:'Hufflepuff', c:'#c8a415', c2:'#3b3b3b', t:'#7a6206',
+        line:'Loyal to the bone, and far tougher than the gentle ones ever get credit for.',
+        glyph:'<path d="M60 40 l6 13 14 2 -10 10 3 14 -13 -7 -13 7 3 -14 -10 -10 14 -2 Z M42 78 c8 -4 28 -4 36 0 c-4 14 -14 22 -18 22 s-14 -8 -18 -22 Z"/>' },
+    S:{ name:'Slytherin', c:'#1e6b4f', c2:'#b9bec4', t:'#185a40',
+        line:'Ambition with good taste. You decide what you want, and then you simply arrange for it to happen.',
+        glyph:'<path d="M42 48 c18 -8 36 -8 40 2 c3 9 -10 13 -20 16 c-12 4 -22 9 -19 18 c4 10 22 12 38 6 M78 90 l6 4 -7 3" fill="none" stroke="var(--house-2)" stroke-width="5" stroke-linecap="round"/>' }
+  };
+  var NUMS = ['one','two','three','four','five'];
+  var qi = 0, tally = null, deliberating = false;
+  function startSorting(){
+    qi = 0; tally = { G:0, R:0, H:0, S:0 };
+    $('sortBody').hidden = false; $('sortResult').hidden = true;
+    renderQ();
+  }
+  var choosing = false;
+  function renderQ(){
+    var Q = QS[qi];
+    $('qnum').textContent = 'Question ' + NUMS[qi] + ' of five';
+    $('qtext').textContent = Q.q;
+    restartAnim($('qtext'), 'swap');
+    var box = $('qopts'); box.innerHTML = ''; box.classList.remove('choosing');
+    shuffle(Q.a.slice()).forEach(function(pair, i){
+      var b = document.createElement('button');
+      b.className = 'opt'; b.type = 'button'; b.textContent = pair[0];
+      b.style.animationDelay = (90 + i * 70) + 'ms';
+      b.addEventListener('click', function(){
+        if (choosing || deliberating || P.sorted) return;
+        choosing = true;
+        b.classList.add('chosen'); box.classList.add('choosing');
+        setTimeout(function(){ choosing = false; answer(pair[1]); }, reduce ? 0 : 300);
+      });
+      box.appendChild(b);
+    });
+  }
+  function answer(h){
+    if (deliberating || P.sorted) return;
+    tally[h]++; qi++;
+    if (qi < QS.length){ renderQ(); return; }
+    deliberating = true;
+    $('qnum').textContent = '\u00A0';
+    $('qopts').innerHTML = '';
+    $('qtext').textContent = 'The Hat mutters, considers, and mutters again\u2026';
+    restartAnim($('qtext'), 'swap');
+    var thinker = document.querySelector('#sorting .mascot');
+    if (thinker && !reduce) thinker.classList.add('thinking');
+    setTimeout(function(){
+      if (thinker) thinker.classList.remove('thinking');
+      var best = 'G';
+      ['G','R','H','S'].forEach(function(k){ if (tally[k] > tally[best]) best = k; });
+      P.house = best; P.sorted = true; save();
+      applyHouse(best); showSortResult(); sparkle($('sp0'), 24);
+      deliberating = false;
+    }, reduce ? 300 : 2300);
+  }
+  function applyHouse(k){
+    var h = HOUSES[k]; if (!h) return;
+    var r = document.documentElement.style;
+    r.setProperty('--house', h.c); r.setProperty('--house-2', h.c2); r.setProperty('--house-text', h.t);
+    $('crestGlyph').innerHTML = h.glyph;
+    $('houseName').textContent = h.name;
+    $('houseLine').textContent = h.line;
+    $('plaque').textContent = h.name.toUpperCase();
+  }
+  function showSortResult(){ $('sortBody').hidden = true; $('sortResult').hidden = false; restartAnim($('sortResult'), 'pop-in'); }
+  $('toSorting').addEventListener('click', function(){
+    if (P.step >= 2){ goTo('sorting'); return; }
+    startSorting(); unlock('sorting');
+  });
+  $('toPotions').addEventListener('click', function(){
+    if (P.step >= 3){ goTo('potions'); return; }
+    startPotions(); unlock('potions');
+  });
+
+  /* ---------- potions ---------- */
+  var JARS = [
+    { k:'pear', n:'Pear', g:'<path d="M40 22 c0 -8 6 -14 12 -12 c-4 4 -4 9 0 12 c14 4 22 18 22 32 c0 18 -14 30 -30 30 s-30 -12 -30 -30 c0 -13 10 -26 26 -32 Z" fill="#c9d66a"/><path d="M30 60 c-3 8 0 16 6 20" stroke="#eef3b5" stroke-width="4" fill="none" stroke-linecap="round"/>' },
+    { k:'vanilla', n:'Vanilla', g:'<path d="M46 8 c10 14 14 40 10 62 c-2 12 -8 20 -14 20 s-12 -8 -14 -20 c-4 -22 0 -48 10 -62 c2 -3 6 -3 8 0 Z" fill="#3a2a1c"/><path d="M40 20 c4 16 5 40 2 58" stroke="#6b503a" stroke-width="3" fill="none"/>' },
+    { k:'amber', n:'Amber', g:'<path d="M42 14 c20 0 32 16 32 34 c0 22 -14 38 -32 38 s-32 -16 -32 -38 c0 -18 12 -34 32 -34 Z" fill="#d79a2b" opacity=".92"/><ellipse cx="34" cy="38" rx="9" ry="7" fill="#f6dc9a" opacity=".7"/><path d="M44 52 l6 6 M50 52 l-6 6 M47 46 v18" stroke="#6b4512" stroke-width="2" stroke-linecap="round"/>' },
+    { k:'rose', n:'Rose petal', g:'<path d="M42 10 c22 0 34 16 34 34 c0 22 -16 40 -34 40 s-34 -18 -34 -40 c0 -18 12 -34 34 -34 Z" fill="#d4738f"/><path d="M42 24 c12 0 18 10 18 20 c0 12 -8 22 -18 22" fill="none" stroke="#f3c2d1" stroke-width="4"/>' },
+    { k:'moondew', n:'Moondew', g:'<path d="M42 8 c14 20 26 34 26 48 c0 16 -12 28 -26 28 s-26 -12 -26 -28 c0 -14 12 -28 26 -48 Z" fill="#a9c8e8" opacity=".9"/><ellipse cx="32" cy="52" rx="7" ry="10" fill="#eaf4ff" opacity=".75"/>' },
+    { k:'mint', n:'Peppermint', g:'<path d="M42 84 c0 -26 -4 -44 -20 -58 c22 2 34 18 34 40 M42 84 c0 -22 6 -38 22 -48 c-4 22 -10 34 -22 40" fill="#4f9d5c"/><path d="M42 88 v-30" stroke="#2f6b39" stroke-width="4" stroke-linecap="round"/>' },
+    { k:'nettle', n:'Nettle', g:'<path d="M42 86 v-54 M42 46 c-16 -4 -22 -14 -24 -26 c14 2 22 10 24 26 M42 40 c16 -4 22 -14 24 -26 c-14 2 -22 10 -24 26 M42 66 c-14 -3 -20 -12 -22 -22 c12 2 20 8 22 22" stroke="#3f7a3c" stroke-width="5" fill="none" stroke-linecap="round"/>' },
+    { k:'wormwood', n:'Wormwood', g:'<path d="M42 88 c-4 -22 -14 -34 -30 -40 c16 -4 28 4 32 18 M42 66 c4 -20 16 -30 32 -34 c-14 -6 -28 2 -32 16" fill="#8fa37c"/><path d="M42 90 v-40" stroke="#6b7d59" stroke-width="4" stroke-linecap="round"/>' },
+    { k:'scale', n:'Salamander scale', g:'<path d="M42 8 c22 8 30 26 26 46 c-4 18 -16 30 -26 30 s-22 -12 -26 -30 c-4 -20 4 -38 26 -46 Z" fill="#d1592e"/><path d="M42 20 c10 8 14 22 12 34 c-2 10 -7 18 -12 20" fill="#f0a05e" opacity=".8"/>' }
+  ];
+  var RIDDLES = [
+    { r:'Green-gold and dripping, the first bite of the orchard. Women in old paintings hold me up and let you assume I am an apple.', k:'pear',
+      hint:'It grows on a tree, it is shaped like a teardrop, and it is not an apple.' },
+    { r:'A black pod off a climbing orchid, left in the sun until it turns to sugar and shadow. Your kitchen smells of comfort because of me.', k:'vanilla',
+      hint:'It is the flavour of the plainest ice cream in the shop.' },
+    { r:'I was a tree\u2019s blood once. I sat perfectly still for ten thousand years and set into gold glass, with one small fly asleep inside me.', k:'amber',
+      hint:'It is not a plant at all. Look for the jar that glows gold.' }
+  ];
+  var POT_COLORS = ['#7d6a94','#9c6f9e','#c98fae'];
+  var PIPS = ['\u25CB \u25CB \u25CB','\u25CF \u25CB \u25CB','\u25CF \u25CF \u25CB','\u25CF \u25CF \u25CF'];
+  var ri = 0, misses = 0;
+  function startPotions(){
+    ri = 0; misses = 0;
+    var shelf = $('shelf'); shelf.innerHTML = '';
+    shuffle(JARS.slice()).forEach(function(j){
+      var b = document.createElement('button');
+      b.className = 'jar'; b.type = 'button';
+      b.innerHTML = '<svg viewBox="0 0 84 96" aria-hidden="true">' + j.g + '</svg><span>' + j.n + '</span>';
+      b.setAttribute('aria-label', j.n);
+      b.addEventListener('click', function(){ pick(b, j); });
+      shelf.appendChild(b);
+    });
+    $('riddle').textContent = RIDDLES[0].r;
+    $('potPips').textContent = PIPS[0];
+    $('brewTop').style.fill = '#6f5f86';
+    say($('potMsg'), '\u00A0');
+  }
+  function potionsDoneUI(){
+    ri = RIDDLES.length;
+    each('#shelf .jar', function(b){ b.classList.add('done'); b.disabled = true; });
+    $('potPips').textContent = PIPS[3];
+    $('brewTop').style.fill = POT_COLORS[2];
+    $('riddle').textContent = 'The steam turns mother-of-pearl and spirals upward. It is done.';
+    say($('potMsg'), 'Amortentia, correctly brewed. Full marks.', 'good');
+  }
+  /* the chosen ingredient arcs up off the shelf and into the cauldron */
+  function dropIn(btn, landed){
+    var cauldron = document.querySelector('#potions .cauldron'), svg = btn.querySelector('svg');
+    if (reduce || !cauldron || !svg || !Element.prototype.animate){ landed(); return; }
+    var c = cauldron.getBoundingClientRect(), r = svg.getBoundingClientRect();
+    var tx = c.left + c.width / 2, ty = c.top + c.height * 0.4;
+    var fly = document.createElement('div');
+    fly.className = 'flyer jarfly';
+    fly.style.left = r.left + 'px'; fly.style.top = r.top + 'px'; fly.style.width = r.width + 'px'; fly.style.height = r.height + 'px';
+    fly.innerHTML = svg.outerHTML;
+    document.body.appendChild(fly);
+    var dx = tx - (r.left + r.width / 2), dy = ty - (r.top + r.height / 2);
+    var a = fly.animate([
+      { transform:'translate(0px,0px) scale(1) rotate(0deg)', opacity:1 },
+      { transform:'translate(' + (dx * 0.5).toFixed(1) + 'px,' + (dy * 0.5 - 70).toFixed(1) + 'px) scale(.85) rotate(-25deg)', opacity:1, offset:0.5 },
+      { transform:'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(.25) rotate(20deg)', opacity:0.15 }
+    ], { duration:820, easing:'cubic-bezier(.45,0,.4,1)', fill:'forwards' });
+    a.onfinish = function(){
+      fly.remove();
+      burstAt(tx, ty, 12, ['#cbb3e0', '#f2a9c4', '#fff1fa']);
+      restartAnim(cauldron, 'splash');
+      landed();
+    };
+  }
+  function pick(btn, jar){
+    if (P.potions || ri >= RIDDLES.length) return;
+    if (jar.k === RIDDLES[ri].k){
+      btn.classList.add('done'); btn.disabled = true;
+      ri++; misses = 0;
+      var step = ri;
+      if (ri < RIDDLES.length){
+        say($('potMsg'), 'The cauldron accepts it. Something in the steam changes.', 'good');
+        $('riddle').textContent = RIDDLES[ri].r;
+        restartAnim($('riddle'), 'swap');
+        dropIn(btn, function(){
+          $('brewTop').style.fill = POT_COLORS[step - 1];
+          $('potPips').textContent = PIPS[step]; restartAnim($('potPips'), 'bump');
+        });
+      } else {
+        P.potions = true; save();
+        dropIn(btn, function(){ potionsDoneUI(); restartAnim($('potPips'), 'bump'); restartAnim($('riddle'), 'swap'); });
+        setTimeout(function(){ unlock('gift1'); sparkle($('sp1'), 26); }, 1400);
+      }
+    } else {
+      misses++;
+      btn.classList.add('wrong');
+      setTimeout(function(){ btn.classList.remove('wrong'); }, 420);
+      say($('potMsg'), misses >= 2 ? 'A whisper from the steam: ' + RIDDLES[ri].hint
+                                   : 'The cauldron spits it straight back out. Read the riddle again.', 'bad');
+    }
+  }
+  $('toGreenhouse').addEventListener('click', function(){
+    if (P.step >= 5){ goTo('greenhouse'); return; }
+    unlock('greenhouse');
+  });
+  $('startLocks').addEventListener('click', function(){
+    if (P.step >= 6){ goTo('runes'); return; }
+    buildRunes(); unlock('runes');
+  });
+  function markLock(id, done){
+    var el = $(id);
+    el.classList.toggle('done', !!done);
+    el.querySelector('.mark').textContent = done ? '\u2713' : '\u2726';
+  }
+  function markLocks(){ markLock('lockRunes', P.runes); markLock('lockMemory', P.memory); markLock('lockHunt', P.hunt); }
+
+  /* ---------- ancient runes (drawn, so they show on every device) ---------- */
+  var RUNES = {"A": "M3 0 V16 M3 1 L9 5 M3 6 L9 10", "C": "M9 3 L3 8 L9 13", "D": "M1 1 V15 M9 1 V15 M1 1 L9 15 M9 1 L1 15", "E": "M1 16 V1 L5 6 L9 1 V16", "G": "M1 1 L9 15 M9 1 L1 15", "I": "M5 0 V16", "N": "M5 0 V16 M2 5 L8 10", "O": "M5 0 L9 5 L2 15 M5 0 L1 5 L8 15", "P": "M2 0 V16 M2 0 L6.5 4 L10 0 M2 16 L6.5 12 L10 16", "R": "M2 0 V16 M2 0 L8 4 L2 8 L8 16", "S": "M7.5 0 L2 6.5 L8 9.5 L2.5 16", "T": "M5 1 V16 M1 6 L5 1 L9 6"};
+  var ANS_TEXT = 'A SEED NEEDS PATIENCE', ANS = ANS_TEXT.replace(/[^A-Z]/g, '');
+  var runesBuilt = false, runeTries = 0;
+  function runeSvg(L){
+    return '<svg viewBox="-1 -1 12 18" aria-hidden="true"><path d="' + RUNES[L] +
+           '" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+  function norm(s){ return (s || '').toUpperCase().replace(/[^A-Z]/g, ''); }
+  function buildRunes(){
+    if (runesBuilt) return;
+    runesBuilt = true;
+    $('runekey').innerHTML = Object.keys(RUNES).sort().map(function(L){
+      return '<div class="k">' + runeSvg(L) + '<i>' + L + '</i></div>';
+    }).join('');
+    $('cipher').innerHTML = ANS_TEXT.split(' ').map(function(w){
+      return '<span class="rw">' + w.split('').map(function(ch){ return '<span class="rc">' + runeSvg(ch) + '</span>'; }).join('') + '</span>';
+    }).join(' ');
+    $('runeIn').value = P.runeText || '';
+    paintRunes(true);
+  }
+  function paintRunes(quiet){
+    var v = norm($('runeIn').value), right = 0, cells = document.querySelectorAll('#cipher .rc');
+    for (var i = 0; i < cells.length; i++){
+      var ok = i < v.length && v[i] === ANS[i];
+      cells[i].classList.toggle('ok', ok);
+      cells[i].classList.toggle('no', i < v.length && !ok);
+      if (ok) right++;
+    }
+    $('runeCount').textContent = right + ' of ' + ANS.length + ' runes read';
+    if (!P.runes && !quiet){ P.runeText = $('runeIn').value; save(); }
+    if (v === ANS && !quiet) runesSolved();
+  }
+  function runesSolved(){
+    if (P.runes) return;
+    P.runes = true; P.runeText = ANS_TEXT; save();
+    runesDoneUI();
+    say($('runeMsg'), 'The carving glows once and goes quiet. The first enchantment is broken.', 'good');
+    setTimeout(function(){ buildMemory(); unlock('memory'); }, 1600);
+  }
+  function runesDoneUI(){
+    $('runeIn').value = ANS_TEXT; $('runeIn').disabled = true; $('runeGo').disabled = true;
+    var k = 0;
+    each('#cipher .rc', function(c){ c.classList.add('ok'); c.classList.remove('no'); c.style.animationDelay = (k++ * 45) + 'ms'; });
+    restartAnim($('cipher'), 'solved');
+    $('runeCount').textContent = 'All ' + ANS.length + ' runes read';
+    markLocks();
+  }
+  function tryRunes(){
+    if (P.runes) return;
+    var v = norm($('runeIn').value);
+    if (v === ANS){ runesSolved(); return; }
+    runeTries++;
+    var left = ANS.length - v.length, msg;
+    if (!v) msg = 'Type what the runes say: one letter for each rune.';
+    else if (runeTries >= 5) msg = 'Hint: the line begins \u201cA SEED\u2026\u201d';
+    else if (runeTries >= 3) msg = 'Hint: the first word is a single letter, and the whole line is gardening advice.';
+    else if (left > 0) msg = 'Not finished: ' + left + ' more rune' + (left === 1 ? '' : 's') + ' to read.';
+    else msg = 'Nothing happens. Check the runes marked in red against the key.';
+    say($('runeMsg'), msg, 'bad');
+  }
+  $('runeIn').addEventListener('input', function(){ paintRunes(false); });
+  $('runeGo').addEventListener('click', tryRunes);
+  $('runeIn').addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); tryRunes(); } });
+
+  /* ---------- care of magical creatures: matched pairs ---------- */
+  var CREATURES = [["owl", "<path d=\"M17 18 l3 -9 5 7 Z M47 18 l-3 -9 -5 7 Z\" fill=\"#8a7358\"/><path d=\"M32 11 c12 0 20 9 20 20 c0 14 -9 24 -20 24 s-20 -10 -20 -24 c0 -11 8 -20 20 -20 Z\" fill=\"#8a7358\"/><ellipse cx=\"32\" cy=\"40\" rx=\"10\" ry=\"12\" fill=\"#e0cdae\"/><circle cx=\"25\" cy=\"27\" r=\"6\" fill=\"#f6efd8\"/><circle cx=\"39\" cy=\"27\" r=\"6\" fill=\"#f6efd8\"/><circle cx=\"25\" cy=\"27\" r=\"3\" fill=\"#22304a\"/><circle cx=\"39\" cy=\"27\" r=\"3\" fill=\"#22304a\"/><path d=\"M32 33 l-3.5 4.5 3.5 2.6 3.5 -2.6 Z\" fill=\"#dda85c\"/>"], ["cat", "<path d=\"M46 54 C57 52 59 41 52 36\" stroke=\"#7d7d86\" stroke-width=\"4.5\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M18 57 C18 41 24 33 32 33 C40 33 46 41 46 57 Z\" fill=\"#7d7d86\"/><path d=\"M26 57 C26 47 29 42 32 42 C35 42 38 47 38 57 Z\" fill=\"#ece5d8\"/><path d=\"M21 19 L22 6 L30 14 Z M43 19 L42 6 L34 14 Z\" fill=\"#7d7d86\"/><path d=\"M23.5 15 L24 10 L27.5 13.5 Z M40.5 15 L40 10 L36.5 13.5 Z\" fill=\"#e7a7b0\"/><circle cx=\"32\" cy=\"24\" r=\"12\" fill=\"#7d7d86\"/><ellipse cx=\"27\" cy=\"23.5\" rx=\"2.6\" ry=\"3.4\" fill=\"#e3b23c\"/><ellipse cx=\"37\" cy=\"23.5\" rx=\"2.6\" ry=\"3.4\" fill=\"#e3b23c\"/><ellipse cx=\"27\" cy=\"23.5\" rx=\".9\" ry=\"2.8\" fill=\"#22202a\"/><ellipse cx=\"37\" cy=\"23.5\" rx=\".9\" ry=\"2.8\" fill=\"#22202a\"/><path d=\"M30.4 28.3 h3.2 l-1.6 2 Z\" fill=\"#e7a7b0\"/>"], ["toad", "<path d=\"M13 49 l-5 6 M51 49 l5 6\" stroke=\"#5f8a3e\" stroke-width=\"4.5\" stroke-linecap=\"round\"/><ellipse cx=\"32\" cy=\"42\" rx=\"21\" ry=\"13\" fill=\"#6f9a4a\"/><ellipse cx=\"32\" cy=\"46\" rx=\"13\" ry=\"7\" fill=\"#c9d98a\"/><circle cx=\"23\" cy=\"30\" r=\"7\" fill=\"#6f9a4a\"/><circle cx=\"41\" cy=\"30\" r=\"7\" fill=\"#6f9a4a\"/><circle cx=\"23\" cy=\"29\" r=\"4\" fill=\"#f3efd9\"/><circle cx=\"41\" cy=\"29\" r=\"4\" fill=\"#f3efd9\"/><circle cx=\"23.5\" cy=\"29.5\" r=\"2.2\" fill=\"#22202a\"/><circle cx=\"41.5\" cy=\"29.5\" r=\"2.2\" fill=\"#22202a\"/><path d=\"M23 39 q9 6 18 0\" stroke=\"#3f5a2a\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/><g fill=\"#5a8238\" opacity=\".7\"><circle cx=\"16\" cy=\"40\" r=\"2\"/><circle cx=\"48\" cy=\"38\" r=\"2\"/><circle cx=\"44\" cy=\"45\" r=\"1.6\"/></g>"], ["snail", "<path d=\"M8 52 Q8 44 20 44 H50 Q58 44 58 52 Z\" fill=\"#c9b48c\"/><path d=\"M50 40 L47 29 M56 40 L60 30\" stroke=\"#c9b48c\" stroke-width=\"2.4\" stroke-linecap=\"round\"/><circle cx=\"47\" cy=\"28\" r=\"2.2\" fill=\"#c9b48c\"/><circle cx=\"60.5\" cy=\"29\" r=\"2.2\" fill=\"#c9b48c\"/><circle cx=\"53\" cy=\"42\" r=\"6\" fill=\"#c9b48c\"/><circle cx=\"55\" cy=\"41\" r=\"1.2\" fill=\"#3a2a1c\"/><circle cx=\"29\" cy=\"31\" r=\"15\" fill=\"#b07a45\"/><path d=\"M29 31 m0 -3 c3 0 4 3 3 5 c-2 3 -7 2 -7 -2 c0 -5 6 -8 10 -5 c5 3 4 11 -2 13 c-7 3 -14 -3 -12 -10\" fill=\"none\" stroke=\"#6e4524\" stroke-width=\"2.2\" stroke-linecap=\"round\"/>"], ["moth", "<g fill=\"#c9b8e0\"><ellipse cx=\"19\" cy=\"25\" rx=\"14\" ry=\"10\" transform=\"rotate(-28 19 25)\"/><ellipse cx=\"45\" cy=\"25\" rx=\"14\" ry=\"10\" transform=\"rotate(28 45 25)\"/></g><g fill=\"#a993cf\"><ellipse cx=\"21\" cy=\"43\" rx=\"10\" ry=\"7\" transform=\"rotate(24 21 43)\"/><ellipse cx=\"43\" cy=\"43\" rx=\"10\" ry=\"7\" transform=\"rotate(-24 43 43)\"/></g><circle cx=\"17\" cy=\"24\" r=\"3.6\" fill=\"#f4e8cf\"/><circle cx=\"47\" cy=\"24\" r=\"3.6\" fill=\"#f4e8cf\"/><ellipse cx=\"32\" cy=\"34\" rx=\"3.8\" ry=\"14\" fill=\"#5b4a6e\"/><path d=\"M30 21 q-4 -8 -10 -11 M34 21 q4 -8 10 -11\" stroke=\"#5b4a6e\" stroke-width=\"1.8\" fill=\"none\" stroke-linecap=\"round\"/>"], ["hedgehog", "<path d=\"M17 50 v5 M28 51 v5 M40 51 v5\" stroke=\"#5e4430\" stroke-width=\"3.4\" stroke-linecap=\"round\"/><path d=\"M8 47 l1 -8 3 -8 5 -7 6 -5 8 -3 8 1 7 4 5 6 3 6 v14 Z\" fill=\"#5e4430\"/><path d=\"M9 40 l-4 -4 M12 32 l-5 -6 M17 25 l-3 -8 M23 20 l-1 -9 M31 17 l2 -9 M39 18 l5 -8 M46 22 l7 -6\" stroke=\"#5e4430\" stroke-width=\"4\" stroke-linecap=\"round\"/><path d=\"M8 47 C10 38 20 30 32 30 C44 30 52 38 52 47 Z\" fill=\"#8a6a4a\"/><path d=\"M42 34 C52 34 58 40 61 45 C57 50 50 51 44 51 C40 47 40 39 42 34 Z\" fill=\"#d9b48a\"/><circle cx=\"50\" cy=\"40\" r=\"2\" fill=\"#22202a\"/><circle cx=\"61\" cy=\"45\" r=\"2.4\" fill=\"#22202a\"/>"]];
+  var first = null, lockBoard = false, matched = 0, memBuilt = false;
+  var CARD_BACK = '<span class="mface mback"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 l2.6 7 7.4 .3 -5.9 4.6 2.1 7.2 -6.2 -4.3 -6.2 4.3 2.1 -7.2 -5.9 -4.6 7.4 -.3 Z" fill="var(--gold-hi)"/></svg></span>';
+  function buildMemory(){
+    if (memBuilt) return;
+    memBuilt = true;
+    var grid = $('mgrid'), deck = [];
+    grid.innerHTML = ''; first = null; lockBoard = false; matched = 0;
+    CREATURES.forEach(function(c, i){ deck.push(i, i); });
+    shuffle(deck).forEach(function(i){
+      var b = document.createElement('button');
+      b.className = 'mcard'; b.type = 'button'; b.dataset.i = i;
+      b.setAttribute('aria-label', 'Face-down card');
+      b.innerHTML = CARD_BACK + '<span class="mface mfront"><svg viewBox="0 0 64 64" aria-hidden="true">' + CREATURES[i][1] + '</svg></span>';
+      b.addEventListener('click', function(){ flip(b); });
+      grid.appendChild(b);
+    });
+    say($('memMsg'), '\u00A0');
+  }
+  function flip(b){
+    if (P.memory || lockBoard || b.classList.contains('flip') || b.classList.contains('matched')) return;
+    b.classList.add('flip');
+    b.setAttribute('aria-label', CREATURES[b.dataset.i][0]);
+    if (!first){ first = b; return; }
+    lockBoard = true;
+    if (first.dataset.i === b.dataset.i){
+      first.classList.add('matched'); b.classList.add('matched');
+      first = null; lockBoard = false; matched++;
+      var left = CREATURES.length - matched;
+      if (!left){
+        P.memory = true; save();
+        memoryDoneUI();
+        setTimeout(function(){ unlock('hunt'); }, 1400);
+      } else {
+        say($('memMsg'), 'A pair of ' + CREATURES[b.dataset.i][0] + 's! ' + left + ' pair' + (left === 1 ? '' : 's') + ' still hiding.');
+      }
+    } else {
+      var a = first; first = null;
+      setTimeout(function(){
+        a.classList.remove('flip'); b.classList.remove('flip');
+        a.setAttribute('aria-label', 'Face-down card'); b.setAttribute('aria-label', 'Face-down card');
+        lockBoard = false;
+      }, 850);
+    }
+  }
+  function memoryDoneUI(){
+    each('#mgrid .mcard', function(c){ c.classList.add('flip', 'matched'); c.setAttribute('aria-label', CREATURES[c.dataset.i][0]); });
+    say($('memMsg'), 'Every pair accounted for. The second enchantment gives way.', 'good');
+    markLocks();
+  }
+
+  /* ---------- the relic hunt ---------- */
+  var relics = Array.prototype.slice.call(document.querySelectorAll('.relic'))
+                 .sort(function(a, b){ return a.dataset.relic - b.dataset.relic; });
+  var TOTAL = relics.length;
+  var NAMES = { 1:'the star', 2:'the feather', 3:'the key', 4:'the phial', 5:'the rose', 6:'the acorn', 7:'the moon' };
+  var LOC   = { 1:'up in the night sky, high above the castle', 2:'inside the letter itself', 3:'at the Sorting',
+                4:'down in the Potions dungeon', 5:'with the first gift', 6:'in the greenhouse', 7:'with the runes' };
+  var ticons = $('ticons');
+  relics.forEach(function(r){
+    var s = document.createElement('span');
+    s.className = 'ticon'; s.dataset.relic = r.dataset.relic; s.title = NAMES[r.dataset.relic];
+    s.innerHTML = r.innerHTML;
+    ticons.appendChild(s);
+  });
+  function isFound(id){ return P.relics.indexOf(+id) >= 0; }
+  function updateTrack(){
+    Array.prototype.forEach.call(ticons.children, function(s){ s.classList.toggle('got', isFound(s.dataset.relic)); });
+    $('trackCount').textContent = P.relics.length + ' / ' + TOTAL;
+    if (!P.hunt) say($('huntMsg'), P.relics.length + ' of ' + TOTAL + ' found.');
+  }
+  /* pop, burst, then fly down into its own slot on the tracker */
+  function collectFx(r, id){
+    var c = centerOf(r), icon = ticons.querySelector('.ticon[data-relic="' + id + '"]');
+    burstAt(c.x, c.y, 14);
+    if (reduce || !icon || !Element.prototype.animate) return function(cb){ cb(); };
+    var t = centerOf(icon), dx = t.x - c.x, dy = t.y - c.y, lift = Math.min(-60, -0.15 * Math.abs(dy) - 40);
+    var fly = document.createElement('div');
+    fly.className = 'flyer';
+    fly.style.left = (c.x - 18) + 'px'; fly.style.top = (c.y - 18) + 'px';
+    fly.innerHTML = r.innerHTML;
+    document.body.appendChild(fly);
+    var anim = fly.animate([
+      { transform:'translate(0px,0px) scale(1) rotate(0deg)', easing:'cubic-bezier(.3,1.7,.5,1)' },
+      { transform:'translate(0px,-8px) scale(2.2) rotate(-16deg)', offset:0.24, easing:'ease-in-out' },
+      { transform:'translate(0px,-6px) scale(1.8) rotate(10deg)', offset:0.38, easing:'cubic-bezier(.5,0,.6,1)' },
+      { transform:'translate(' + (dx * 0.5).toFixed(1) + 'px,' + (dy * 0.5 + lift).toFixed(1) + 'px) scale(1.3) rotate(200deg)', offset:0.7, easing:'cubic-bezier(.4,0,.8,.6)' },
+      { transform:'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(.55) rotate(360deg)', opacity:0.95 }
+    ], { duration:1250, fill:'forwards' });
+    var waiting = [], done = false;
+    anim.onfinish = function(){ fly.remove(); done = true; waiting.forEach(function(f){ f(); }); };
+    return function(cb){ if (done) cb(); else waiting.push(cb); };
+  }
+  relics.forEach(function(r){
+    r.addEventListener('click', function(){
+      if (!document.body.classList.contains('hunting') || r.classList.contains('got')) return;
+      var id = +r.dataset.relic;
+      var land = collectFx(r, id);
+      r.classList.add('got');
+      if (!isFound(id)){ P.relics.push(id); save(); }
+      $('trackCount').textContent = P.relics.length + ' / ' + TOTAL;
+      toast('Found ' + NAMES[id] + ' \u2014 ' + P.relics.length + ' of ' + TOTAL);
+      var all = P.relics.length >= TOTAL;
+      if (all) finishHunt(reduce ? 0 : 1700);
+      land(function(){
+        updateTrack();
+        restartAnim(ticons.querySelector('.ticon[data-relic="' + id + '"]'), 'pop');
+        restartAnim($('trackCount'), 'bump');
+        if (all){ var tc = centerOf($('tracker')); burstAt(tc.x, tc.y, 24); }
+      });
+    });
+  });
+  function beginHunt(scrollUp){
+    document.body.classList.add('hunting');
+    $('tracker').classList.add('on');
+    $('huntGo').disabled = true; $('huntGo').textContent = 'The search is on';
+    if (!P.huntStarted){ P.huntStarted = true; save(); }
+    updateTrack();
+    if (scrollUp){
+      setTimeout(function(){ window.scrollTo({ top:0, behavior: reduce ? 'auto' : 'smooth' }); }, 500);
+      setTimeout(function(){ toast('Start up here under the stars, then work your way down.', 3600); }, 1300);
+    }
+  }
+  function finishHunt(delayUI){
+    if (P.hunt) return;
+    P.hunt = true; save();
+    var d = delayUI || 0;
+    setTimeout(huntDoneUI, d);
+    setTimeout(function(){ unlock('bloom'); }, d + 1400);
+  }
+  function huntDoneUI(){
+    document.body.classList.remove('hunting');
+    var tr = $('tracker');
+    if (tr.classList.contains('on') && !reduce){
+      tr.classList.add('leaving');
+      setTimeout(function(){ tr.classList.remove('on', 'leaving'); }, 520);
+    } else tr.classList.remove('on');
+    $('huntGo').disabled = true; $('huntGo').textContent = 'All seven found';
+    say($('huntMsg'), 'All seven. The third enchantment lifts, and something under the soil shifts.', 'good');
+    markLocks();
+  }
+  $('huntGo').addEventListener('click', function(){ if (!P.hunt) beginHunt(true); });
+  var lastHint = null;
+  $('hintBtn').addEventListener('click', function(){
+    var target = relics.filter(function(r){ return !r.classList.contains('got'); })[0];
+    if (!target) return;
+    var sec = target.closest('.chamber');
+    if (sec) sec.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'center' });
+    if (lastHint === target){
+      target.classList.remove('hinted'); void target.offsetWidth; target.classList.add('hinted');
+      setTimeout(function(){ target.classList.remove('hinted'); }, 4600);
+      toast('There \u2014 ' + NAMES[target.dataset.relic] + ' is glowing.', 2600);
+    } else {
+      toast('Look ' + LOC[target.dataset.relic] + '.', 2800);
+    }
+    lastHint = target;
+  });
+
+  /* ---------- the bloom ---------- */
+  var STAGES = [
+    { id:'pStem',   msg:'A green thread pushes up through the soil. Leave it be for a moment.' },
+    { id:'pLeaves', msg:'Two leaves open like hands. It is drinking. Wait.' },
+    { id:'pBud',    msg:'A bud, tight as a fist, and absolutely refusing to be hurried.' },
+    { id:'pBloom',  msg:'It opens.' }
+  ];
+  var bi = 0, cooling = false;
+  $('water').addEventListener('click', function(){
+    if (P.bloom || cooling || bi >= STAGES.length) return;
+    var btn = $('water');
+    waterFx();
+    $(STAGES[bi].id).classList.remove('hidden-part');
+    say($('bloomMsg'), STAGES[bi].msg);
+    bi++;
+    P.bloomStage = bi; save();
+    if (bi >= STAGES.length){
+      btn.disabled = true; btn.textContent = 'In full bloom';
+      $('bloomTitle').textContent = 'It opens';
+      P.bloom = true; save();
+      setTimeout(function(){ var bc = centerOf($('pBloom')); burstAt(bc.x, bc.y, 20, ['#f7d3de', '#e59ab4', '#fff3f7', '#f4d98a']); }, 750);
+      setTimeout(function(){ unlock('gift2'); sparkle($('sp2'), 30); }, 2400);
+      return;
+    }
+    cooling = true; btn.disabled = true;
+    var wait = reduce ? 600 : [5000, 7000, 9000][bi - 1], left = Math.round(wait / 1000);
+    btn.textContent = 'the soil is drinking\u2026 ' + left;
+    var iv = setInterval(function(){ left--; if (left > 0) btn.textContent = 'the soil is drinking\u2026 ' + left; }, 1000);
+    setTimeout(function(){ clearInterval(iv); cooling = false; btn.disabled = false; btn.textContent = 'Water it again'; }, wait);
+  });
+  /* a little shower over the soil each time she waters */
+  function waterFx(){
+    var pl = document.querySelector('#bloom .plant');
+    if (reduce || !pl) return;
+    var r = pl.getBoundingClientRect(), cx = r.left + r.width / 2, soil = r.top + r.height * (250 / 300);
+    for (var i = 0; i < 9; i++){
+      var d = document.createElement('i');
+      d.className = 'drop';
+      var x = cx + (Math.random() * 64 - 32), y = soil - 92 - Math.random() * 40;
+      d.style.left = x.toFixed(0) + 'px'; d.style.top = y.toFixed(0) + 'px';
+      d.style.setProperty('--fall', (soil - y - 6).toFixed(0) + 'px');
+      d.style.animationDelay = Math.round(Math.random() * 280) + 'ms';
+      document.body.appendChild(d);
+      (function(el){ setTimeout(function(){ el.remove(); }, 1300); })(d);
+    }
+  }
+  function bloomPartialUI(n){
+    for (var k = 0; k < n && k < STAGES.length; k++) $(STAGES[k].id).classList.remove('hidden-part');
+    bi = n;
+    $('water').textContent = 'Water it again';
+    say($('bloomMsg'), STAGES[n - 1].msg);
+  }
+  function bloomDoneUI(){
+    STAGES.forEach(function(s){ $(s.id).classList.remove('hidden-part'); });
+    bi = STAGES.length;
+    $('water').disabled = true; $('water').textContent = 'In full bloom';
+    $('bloomTitle').textContent = 'It opens';
+    say($('bloomMsg'), 'In full bloom.');
+  }
+
+  /* ---------- finale ---------- */
+  function fillFinale(){
+    var h = P.house && HOUSES[P.house] ? HOUSES[P.house].name : 'the castle';
+    $('finaleLine').textContent = 'Sorted into ' + h + '. Passed in Potions, Ancient Runes and Care of Magical Creatures, and passed in Herbology with a distinction for sheer stubbornness. Your portrait now hangs where everyone will walk past it.';
+  }
+  $('toFinale').addEventListener('click', function(){
+    if (P.step >= 11){ goTo('finale'); return; }
+    fillFinale(); unlock('finale'); sparkle($('sp3'), 30);
+    setTimeout(function(){ $('foot').hidden = false; }, 900);
+  });
+  var armed = null;
+  $('replay').addEventListener('click', function(){
+    var btn = $('replay');
+    if (!armed){
+      btn.textContent = 'Tap again to start over from the owl';
+      armed = setTimeout(function(){ armed = null; btn.textContent = 'Wipe the slate and start again'; }, 4000);
+      return;
+    }
+    try { localStorage.removeItem(KEY); } catch(e){}
+    location.href = location.pathname;
+  });
+
+  /* ---------- welcome back: rebuild everything she had already done ---------- */
+  if (resumed){
+    var need = 0;
+    if (P.sorted)  need = Math.max(need, 2);
+    if (P.potions) need = Math.max(need, 4);
+    if (P.runes)   need = Math.max(need, 7);
+    if (P.memory)  need = Math.max(need, 8);
+    if (P.hunt)    need = Math.max(need, 9);
+    if (P.bloom)   need = Math.max(need, 10);
+    if (need > P.step){ P.step = need; save(); }
+    if (P.step >= 4 && P.potions) setTimeout(function(){ sparkle($('sp1'), 14); }, 600);
+    opened = true;
+    owl.classList.add('perched', 'landed', 'opened');
+    tag.textContent = 'Welcome back.';
+    if (P.house) applyHouse(P.house);
+    for (var i = 1; i <= P.step && i < ORDER.length; i++) reveal(ORDER[i]);
+    if (P.step >= 2){ if (P.sorted) showSortResult(); else startSorting(); }
+    if (P.step >= 3){ startPotions(); if (P.potions) potionsDoneUI(); }
+    if (P.step >= 6){ buildRunes(); if (P.runes) runesDoneUI(); }
+    if (P.step >= 7){ buildMemory(); if (P.memory) memoryDoneUI(); }
+    if (P.step >= 8){
+      relics.forEach(function(r){ if (isFound(r.dataset.relic)) r.classList.add('got'); });
+      if (P.hunt) huntDoneUI(); else if (P.huntStarted) beginHunt(false);
+    }
+    if (P.step >= 9){ if (P.bloom) bloomDoneUI(); else if (P.bloomStage > 0) bloomPartialUI(P.bloomStage); }
+    if (P.step >= 11){ fillFinale(); $('foot').hidden = false; }
+    markLocks();
+    setTimeout(function(){
+      $(ORDER[Math.min(P.step, ORDER.length - 1)]).scrollIntoView({ behavior:'auto', block:'start' });
+      toast('Welcome back \u2014 picking up where you left off.', 3200);
+    }, 450);
+  }
+})();
+</script>
+</body>
+</html>
